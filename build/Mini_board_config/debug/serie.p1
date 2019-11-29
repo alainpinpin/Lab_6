@@ -1,51 +1,84 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"1184 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k20.h
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
-"558
-[s S23 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S23 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
-"568
-[s S24 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S24 . AN0 AN1 AN2 AN3 . AN4 ]
-"576
-[s S25 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S25 . C12IN0M C12IN1M C2INP C1INP C1OUT C2OUT ]
-"584
-[s S26 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S26 . C12IN0N C12IN1N VREFM VREFP T0CKI SS ]
-"592
-[s S27 :5 `uc 1 :1 `uc 1 ]
-[n S27 . . NOT_SS ]
-"596
-[s S28 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S28 . . VREFN . nSS ]
-"602
-[s S29 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S29 . . CVREF . LVDIN ]
-"608
-[s S30 :5 `uc 1 :1 `uc 1 ]
-[n S30 . . HLVDIN ]
-"612
-[s S31 :1 `uc 1 :6 `uc 1 :1 `uc 1 ]
-[n S31 . ULPWUIN . RJPU ]
-"557
-[u S22 `S23 1 `S24 1 `S25 1 `S26 1 `S27 1 `S28 1 `S29 1 `S30 1 `S31 1 ]
-[n S22 . . . . . . . . . . ]
-"618
-[v _PORTAbits `VS22 ~T0 @X0 0 e@3968 ]
-"50 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18.h
-[v ___nop `(v ~T0 @X0 0 ef ]
-[p i ___nop ]
-[v F2525 `(v ~T0 @X0 1 tf1`ul ]
-"187
-[v __delay `JF2525 ~T0 @X0 0 e ]
-[p i __delay ]
-"2698 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k20.h
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"87 Lcd4Lignes.c
-[v _lcd_strobeEnableBit `(v ~T0 @X0 0 sf ]
-"86
-[v _lcd_initCGRam `(v ~T0 @X0 0 sf ]
+"2487 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k20.h
+[s S91 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S91 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"2497
+[s S92 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S92 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"2486
+[u S90 `S91 1 `S92 1 ]
+[n S90 . . . ]
+"2508
+[v _TRISCbits `VS90 ~T0 @X0 0 e@3988 ]
+"4257
+[v _SPBRGH `Vuc ~T0 @X0 0 e@4016 ]
+"4245
+[v _SPBRG `Vuc ~T0 @X0 0 e@4015 ]
+"4666
+[s S180 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S180 . ABDEN WUE . BRG16 CKTXP DTRXP RCIDL ABDOVF ]
+"4676
+[s S181 :4 `uc 1 :1 `uc 1 ]
+[n S181 . . SCKP ]
+"4680
+[s S182 :5 `uc 1 :1 `uc 1 ]
+[n S182 . . RXCKP ]
+"4684
+[s S183 :1 `uc 1 :1 `uc 1 ]
+[n S183 . . W4E ]
+"4665
+[u S179 `S180 1 `S181 1 `S182 1 `S183 1 ]
+[n S179 . . . . . ]
+"4689
+[v _BAUDCONbits `VS179 ~T0 @X0 0 e@4024 ]
+"3976
+[s S152 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S152 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
+"3986
+[s S153 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S153 . TX9D1 TRMT1 BRGH1 SENDB1 SYNC1 TXEN1 TX91 CSRC1 ]
+"3996
+[s S154 :6 `uc 1 :1 `uc 1 ]
+[n S154 . . TX8_9 ]
+"4000
+[s S155 :1 `uc 1 ]
+[n S155 . TXD8 ]
+"3975
+[u S151 `S152 1 `S153 1 `S154 1 `S155 1 ]
+[n S151 . . . . . ]
+"4004
+[v _TXSTAbits `VS151 ~T0 @X0 0 e@4012 ]
+"3766
+[s S138 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S138 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"3776
+[s S139 :3 `uc 1 :1 `uc 1 ]
+[n S139 . . ADEN ]
+"3780
+[s S140 :5 `uc 1 :1 `uc 1 ]
+[n S140 . . SRENA ]
+"3784
+[s S141 :6 `uc 1 :1 `uc 1 ]
+[n S141 . . RC8_9 ]
+"3788
+[s S142 :6 `uc 1 :1 `uc 1 ]
+[n S142 . . RC9 ]
+"3792
+[s S143 :1 `uc 1 ]
+[n S143 . RCD8 ]
+"3765
+[u S137 `S138 1 `S139 1 `S140 1 `S141 1 `S142 1 `S143 1 ]
+[n S137 . . . . . . . ]
+"3796
+[v _RCSTAbits `VS137 ~T0 @X0 0 e@4011 ]
+"446
+[v _ANSEL `Vuc ~T0 @X0 0 e@3966 ]
+"4221
+[v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
+"8630
+[v _RCIF `Vb ~T0 @X0 0 e@31989 ]
+"4233
+[v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
 [; ;xc.h: 18: extern const char __xc8_OPTIM_SPEED;
 [; ;xc.h: 20: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2995,822 +3028,175 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 187: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 189: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 191: extern __nonreentrant void _delay3(unsigned char);
-[; ;stdbool.h: 15: typedef unsigned char bool;
-[; ;Lcd4Lignes.h: 27: void lcd_init(void);
-[; ;Lcd4Lignes.h: 34: void lcd_gotoXY(unsigned char x, unsigned char y);
-[; ;Lcd4Lignes.h: 39: void lcd_curseurHome(void);
-[; ;Lcd4Lignes.h: 45: void lcd_ecritChar(unsigned char car);
-[; ;Lcd4Lignes.h: 51: void lcd_putMessage(const unsigned char *chaine);
-[; ;Lcd4Lignes.h: 56: void lcd_effaceAffichage(void);
-[; ;Lcd4Lignes.h: 62: void lcd_effaceLigne(unsigned char y);
-[; ;Lcd4Lignes.h: 68: void lcd_effaceChar(unsigned char nbr);
-[; ;Lcd4Lignes.h: 73: void lcd_cacheCurseur(void);
-[; ;Lcd4Lignes.h: 78: void lcd_montreCurseur(void);
-[v F2555 `uc ~T0 @X0 -> 8 `i t ]
-"66 Lcd4Lignes.c
-[v _matCGRAM `F2555 ~T0 @X0 -> 8 `i e ]
-[i _matCGRAM
-:U ..
-:U ..
-"68
--> -> 8 `i `uc
--> -> 4 `i `uc
--> -> 4 `i `uc
--> -> 10 `i `uc
--> -> 17 `i `uc
--> -> 31 `i `uc
--> -> 17 `i `uc
--> -> 0 `i `uc
-..
-:U ..
-"69
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
-..
-:U ..
-"70
--> -> 2 `i `uc
--> -> 4 `i `uc
--> -> 4 `i `uc
--> -> 14 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 31 `i `uc
--> -> 14 `i `uc
-..
-:U ..
-"71
--> -> 31 `i `uc
--> -> 21 `i `uc
--> -> 21 `i `uc
--> -> 4 `i `uc
--> -> 4 `i `uc
--> -> 21 `i `uc
--> -> 21 `i `uc
--> -> 31 `i `uc
-..
-:U ..
-"72
--> -> 8 `i `uc
--> -> 4 `i `uc
--> -> 31 `i `uc
--> -> 16 `i `uc
--> -> 30 `i `uc
--> -> 16 `i `uc
--> -> 31 `i `uc
--> -> 0 `i `uc
-..
-:U ..
-"73
--> -> 4 `i `uc
--> -> 10 `i `uc
--> -> 14 `i `uc
--> -> 17 `i `uc
--> -> 31 `i `uc
--> -> 16 `i `uc
--> -> 14 `i `uc
--> -> 0 `i `uc
-..
-:U ..
-"74
--> -> 8 `i `uc
--> -> 4 `i `uc
--> -> 14 `i `uc
--> -> 1 `i `uc
--> -> 15 `i `uc
--> -> 17 `i `uc
--> -> 15 `i `uc
--> -> 0 `i `uc
-..
-:U ..
-"75
--> -> 4 `i `uc
--> -> 10 `i `uc
--> -> 14 `i `uc
--> -> 1 `i `uc
--> -> 15 `i `uc
--> -> 17 `i `uc
--> -> 15 `i `uc
--> -> 0 `i `uc
-..
-..
-]
-[; ;Lcd4Lignes.c: 66: char matCGRAM[8][8] =
-[; ;Lcd4Lignes.c: 67: {
-[; ;Lcd4Lignes.c: 68: {8,4,4,0x0A,0x11,0x1F,0x11,0},
-[; ;Lcd4Lignes.c: 69: {0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F},
-[; ;Lcd4Lignes.c: 70: {0x02, 0x04, 0x04, 0x0E, 0x1F, 0x1F, 0x1F, 0x0E},
-[; ;Lcd4Lignes.c: 71: {31, 21, 21, 4, 4, 21, 21, 31},
-[; ;Lcd4Lignes.c: 72: {8,4,0x1F,0x10,0x1E,0x10,0x1F,0},
-[; ;Lcd4Lignes.c: 73: {4,0x0A,0x0E,0x11,0x1F,0x10,0x0E,0},
-[; ;Lcd4Lignes.c: 74: {8,4,0x0E,01,0x0F,0x11,0x0F,0},
-[; ;Lcd4Lignes.c: 75: {4,0x0A,0x0E,1,0x0F,0x11,0x0F,0},
-[; ;Lcd4Lignes.c: 76: };
-[; ;Lcd4Lignes.c: 80: static unsigned char lcd_busy(void);
-[; ;Lcd4Lignes.c: 81: static unsigned char lcd_wrCom(unsigned char cCommande);
-[; ;Lcd4Lignes.c: 82: static unsigned char lcd_wrData(unsigned char nCaractere);
-[; ;Lcd4Lignes.c: 83: static unsigned char lcd_lireDonnees(void);
-[; ;Lcd4Lignes.c: 84: static void lcd_ecrireDonnees(unsigned char cDonnee);
-[; ;Lcd4Lignes.c: 85: static void lcd_resetSequence(void);
-[; ;Lcd4Lignes.c: 86: static void lcd_initCGRam(void);
-[; ;Lcd4Lignes.c: 87: static void lcd_strobeEnableBit(void);
-"93
-[v _lcd_lireDonnees `(uc ~T0 @X0 1 sf ]
-"94
+[; ;errno.h: 29: extern int errno;
+[; ;conio.h: 12: extern void init_uart(void);
+[; ;conio.h: 14: extern char getch(void);
+[; ;conio.h: 15: extern char getche(void);
+[; ;conio.h: 16: extern void putch(char);
+[; ;conio.h: 17: extern void ungetch(char);
+[; ;conio.h: 19: extern __bit kbhit(void);
+[; ;conio.h: 23: extern char * cgets(char *);
+[; ;conio.h: 24: extern void cputs(const char *);
+[; ;serie.h: 11: void init_serie(void);
+[v F2552 `(v ~T0 @X0 1 tf ]
+"29 serie.c
+[v _init_serie `AF2552 ~T0 @X0 1 e ]
+"30
 {
-[; ;Lcd4Lignes.c: 93: static unsigned char lcd_lireDonnees(void)
-[; ;Lcd4Lignes.c: 94: {
-[e :U _lcd_lireDonnees ]
+[; ;serie.c: 29: void init_serie(void)
+[; ;serie.c: 30: {
+[e :U _init_serie ]
 [f ]
-[; ;Lcd4Lignes.c: 96: return (PORTD & 0x0f);
-"96
-[e ) -> & -> _PORTD `i -> 15 `i `uc ]
-[e $UE 296  ]
-[; ;Lcd4Lignes.c: 98: }
-"98
+[; ;serie.c: 32: TRISCbits.TRISC7=1;
+"32
+[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
+[; ;serie.c: 33: TRISCbits.TRISC6=1;
+"33
+[e = . . _TRISCbits 0 6 -> -> 1 `i `uc ]
+[; ;serie.c: 37: SPBRGH=0x00;
+"37
+[e = _SPBRGH -> -> 0 `i `uc ]
+[; ;serie.c: 38: SPBRG=25;
+"38
+[e = _SPBRG -> -> 25 `i `uc ]
+[; ;serie.c: 39: BAUDCONbits.BRG16=1;
+"39
+[e = . . _BAUDCONbits 0 3 -> -> 1 `i `uc ]
+[; ;serie.c: 40: TXSTAbits.BRGH=1;
+"40
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[; ;serie.c: 43: TXSTAbits.SYNC=0;
+"43
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+[; ;serie.c: 44: TXSTAbits.TXEN=1;
+"44
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+[; ;serie.c: 45: RCSTAbits.CREN = 1;
+"45
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[; ;serie.c: 46: RCSTAbits.SPEN=1;
+"46
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[; ;serie.c: 47: ANSEL = 0;
+"47
+[e = _ANSEL -> -> 0 `i `uc ]
+[; ;serie.c: 48: }
+"48
 [e :UE 296 ]
 }
-"107
-[v _lcd_ecrireDonnees `(v ~T0 @X0 1 sf1`uc ]
-"108
+[v F2554 `(v ~T0 @X0 1 tf1`uc ]
+"57
+[v _putch `AF2554 ~T0 @X0 1 e ]
+"58
 {
-[; ;Lcd4Lignes.c: 107: static void lcd_ecrireDonnees(unsigned char donnee)
-[; ;Lcd4Lignes.c: 108: {
-[e :U _lcd_ecrireDonnees ]
-"107
-[v _donnee `uc ~T0 @X0 1 r1 ]
-"108
+[; ;serie.c: 57: void putch(char car)
+[; ;serie.c: 58: {
+[e :U _putch ]
+"57
+[v _car `uc ~T0 @X0 1 r1 ]
+"58
 [f ]
-[; ;Lcd4Lignes.c: 110: PORTD = (donnee & 0x0F) | (PORTD & 0xF0);
-"110
-[e = _PORTD -> | & -> _donnee `i -> 15 `i & -> _PORTD `i -> 240 `i `uc ]
-[; ;Lcd4Lignes.c: 115: }
-"115
+[; ;serie.c: 60: while(TXSTAbits.TRMT==0);
+"60
+[e $U 298  ]
+[e :U 299 ]
+[e :U 298 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 299  ]
+[e :U 300 ]
+[; ;serie.c: 61: TXREG = car;
+"61
+[e = _TXREG _car ]
+[; ;serie.c: 63: }
+"63
 [e :UE 297 ]
 }
-"124
-[v _lcd_busy `(uc ~T0 @X0 1 sf ]
-"125
+[v F2556 `(uc ~T0 @X0 1 tf ]
+"70
+[v _getch `AF2556 ~T0 @X0 1 e ]
+"71
 {
-[; ;Lcd4Lignes.c: 124: static unsigned char lcd_busy(void)
-[; ;Lcd4Lignes.c: 125: {
-[e :U _lcd_busy ]
+[; ;serie.c: 70: char getch(void)
+[; ;serie.c: 71: {
+[e :U _getch ]
 [f ]
-"126
-[v _adresse `uc ~T0 @X0 1 a ]
-[; ;Lcd4Lignes.c: 126: unsigned char adresse;
-[; ;Lcd4Lignes.c: 128: PORTAbits.RA0 = 0;
-"128
-[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 129: PORTAbits.RA1 = 1;
-"129
-[e = . . _PORTAbits 0 1 -> -> 1 `i `uc ]
-[; ;Lcd4Lignes.c: 131: do
-"131
-[e :U 301 ]
-[; ;Lcd4Lignes.c: 132: {
-"132
-{
-[; ;Lcd4Lignes.c: 133: PORTAbits.RA2 = 1;
-"133
-[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-[; ;Lcd4Lignes.c: 134: __nop();
-"134
-[e ( ___nop ..  ]
-[; ;Lcd4Lignes.c: 135: adresse = lcd_lireDonnees() << 4;
-"135
-[e = _adresse -> << -> ( _lcd_lireDonnees ..  `i -> 4 `i `uc ]
-[; ;Lcd4Lignes.c: 136: PORTAbits.RA2 = 0;
-"136
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 137: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"137
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 138: PORTAbits.RA2 = 1;
-"138
-[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-[; ;Lcd4Lignes.c: 139: __nop();
-"139
-[e ( ___nop ..  ]
-[; ;Lcd4Lignes.c: 140: adresse |= lcd_lireDonnees();
-"140
-[e =| _adresse ( _lcd_lireDonnees ..  ]
-[; ;Lcd4Lignes.c: 141: PORTAbits.RA2 = 0;
-"141
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 142: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"142
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"143
-}
-[; ;Lcd4Lignes.c: 143: }
-[; ;Lcd4Lignes.c: 144: while(adresse&0x80);
-"144
-[e $ != & -> _adresse `i -> 128 `i -> 0 `i 301  ]
-[e :U 300 ]
-[; ;Lcd4Lignes.c: 146: PORTAbits.RA1 = 0;
-"146
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 147: return(adresse&0x7f);
-"147
-[e ) -> & -> _adresse `i -> 127 `i `uc ]
-[e $UE 298  ]
-[; ;Lcd4Lignes.c: 148: }
-"148
-[e :UE 298 ]
-}
-"156
-[v _lcd_wrCom `(uc ~T0 @X0 1 sf1`uc ]
-"157
-{
-[; ;Lcd4Lignes.c: 156: static unsigned char lcd_wrCom(unsigned char commande)
-[; ;Lcd4Lignes.c: 157: {
-[e :U _lcd_wrCom ]
-"156
-[v _commande `uc ~T0 @X0 1 r1 ]
-"157
-[f ]
-[; ;Lcd4Lignes.c: 158: lcd_busy();
-"158
-[e ( _lcd_busy ..  ]
-[; ;Lcd4Lignes.c: 160: TRISD = 0b00000000;
-"160
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 161: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"161
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 163: PORTAbits.RA0 = 0;
-"163
-[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 164: PORTAbits.RA1 = 0;
-"164
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 166: lcd_ecrireDonnees(commande >> 4);
-"166
-[e ( _lcd_ecrireDonnees (1 -> >> -> _commande `i -> 4 `i `uc ]
-[; ;Lcd4Lignes.c: 167: lcd_strobeEnableBit();
-"167
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 168: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"168
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 170: lcd_ecrireDonnees(commande);
-"170
-[e ( _lcd_ecrireDonnees (1 _commande ]
-[; ;Lcd4Lignes.c: 171: lcd_strobeEnableBit();
-"171
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 172: _delay((unsigned long)((40)*(1000000/4000000.0)));
-"172
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 174: if ((commande == 0x01) || commande == 0x02)
-"174
-[e $ ! || == -> _commande `i -> 1 `i == -> _commande `i -> 2 `i 303  ]
-[; ;Lcd4Lignes.c: 175: _delay((unsigned long)((2)*(1000000/4000.0)));
-"175
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"72
+[v _c `uc ~T0 @X0 1 a ]
+[; ;serie.c: 72: unsigned char c;
+[; ;serie.c: 74: while (!RCIF)
+"74
+[e $U 302  ]
 [e :U 303 ]
-[; ;Lcd4Lignes.c: 177: TRISD = 0b00001111;
-"177
-[e = _TRISD -> -> 15 `i `uc ]
-[; ;Lcd4Lignes.c: 178: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"178
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 179: return(lcd_busy());
-"179
-[e ) ( _lcd_busy ..  ]
-[e $UE 302  ]
-[; ;Lcd4Lignes.c: 180: }
-"180
-[e :UE 302 ]
+[; ;serie.c: 75: ;
+"75
+[e :U 302 ]
+"74
+[e $ ! _RCIF 303  ]
+[e :U 304 ]
+[; ;serie.c: 76: c = RCREG;
+"76
+[e = _c _RCREG ]
+[; ;serie.c: 78: return c;
+"78
+[e ) _c ]
+[e $UE 301  ]
+[; ;serie.c: 79: }
+"79
+[e :UE 301 ]
 }
-"188
-[v _lcd_wrData `(uc ~T0 @X0 1 sf1`uc ]
-"189
+[v F2559 `(uc ~T0 @X0 1 tf ]
+"86
+[v _getche `AF2559 ~T0 @X0 1 e ]
+"87
 {
-[; ;Lcd4Lignes.c: 188: static unsigned char lcd_wrData(unsigned char caractere)
-[; ;Lcd4Lignes.c: 189: {
-[e :U _lcd_wrData ]
-"188
-[v _caractere `uc ~T0 @X0 1 r1 ]
-"189
+[; ;serie.c: 86: char getche(void)
+[; ;serie.c: 87: {
+[e :U _getche ]
 [f ]
-[; ;Lcd4Lignes.c: 190: lcd_busy();
-"190
-[e ( _lcd_busy ..  ]
-[; ;Lcd4Lignes.c: 191: TRISD = 0b00000000;
-"191
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 192: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"192
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 194: PORTAbits.RA0 = 1;
-"194
-[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
-[; ;Lcd4Lignes.c: 195: PORTAbits.RA1 = 0;
-"195
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 197: lcd_ecrireDonnees(caractere >> 4);
-"197
-[e ( _lcd_ecrireDonnees (1 -> >> -> _caractere `i -> 4 `i `uc ]
-[; ;Lcd4Lignes.c: 198: lcd_strobeEnableBit();
-"198
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 199: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"199
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 201: lcd_ecrireDonnees(caractere);
-"201
-[e ( _lcd_ecrireDonnees (1 _caractere ]
-[; ;Lcd4Lignes.c: 202: lcd_strobeEnableBit();
-"202
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 203: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"203
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 205: TRISD = 0b00001111;
-"205
-[e = _TRISD -> -> 15 `i `uc ]
-[; ;Lcd4Lignes.c: 206: _delay((unsigned long)((2)*(1000000/4000000.0)));
-"206
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 207: return(lcd_busy());
-"207
-[e ) ( _lcd_busy ..  ]
-[e $UE 304  ]
-[; ;Lcd4Lignes.c: 208: }
-"208
-[e :UE 304 ]
-}
-"221
-[v _lcd_resetSequence `(v ~T0 @X0 1 sf ]
-"222
-{
-[; ;Lcd4Lignes.c: 221: static void lcd_resetSequence(void)
-[; ;Lcd4Lignes.c: 222: {
-[e :U _lcd_resetSequence ]
-[f ]
-[; ;Lcd4Lignes.c: 226: TRISD = 0b00000000;
-"226
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 228: _delay((unsigned long)((40)*(1000000/4000.0)));
-"228
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;Lcd4Lignes.c: 229: PORTAbits.RA0 = 0;
-"229
-[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 230: PORTAbits.RA1 = 0;
-"230
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 232: lcd_ecrireDonnees(0x03);
-"232
-[e ( _lcd_ecrireDonnees (1 -> -> 3 `i `uc ]
-[; ;Lcd4Lignes.c: 233: lcd_strobeEnableBit();
-"233
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 234: _delay((unsigned long)((40)*(1000000/4000000.0)));
-"234
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 237: lcd_ecrireDonnees(0x03);
-"237
-[e ( _lcd_ecrireDonnees (1 -> -> 3 `i `uc ]
-[; ;Lcd4Lignes.c: 238: lcd_strobeEnableBit();
-"238
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 239: _delay((unsigned long)((40)*(1000000/4000000.0)));
-"239
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 241: lcd_ecrireDonnees(0x03);
-"241
-[e ( _lcd_ecrireDonnees (1 -> -> 3 `i `uc ]
-[; ;Lcd4Lignes.c: 242: lcd_strobeEnableBit();
-"242
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 243: _delay((unsigned long)((40)*(1000000/4000000.0)));
-"243
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 245: lcd_ecrireDonnees(0x02);
-"245
-[e ( _lcd_ecrireDonnees (1 -> -> 2 `i `uc ]
-[; ;Lcd4Lignes.c: 246: lcd_strobeEnableBit();
-"246
-[e ( _lcd_strobeEnableBit ..  ]
-[; ;Lcd4Lignes.c: 247: _delay((unsigned long)((40)*(1000000/4000000.0)));
-"247
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;Lcd4Lignes.c: 249: TRISD = 0b00001111;
-"249
-[e = _TRISD -> -> 15 `i `uc ]
-[; ;Lcd4Lignes.c: 250: }
-"250
+"88
+[v _c `uc ~T0 @X0 1 a ]
+[; ;serie.c: 88: unsigned char c;
+[; ;serie.c: 89: while (!RCIF);
+"89
+[e $U 306  ]
+[e :U 307 ]
+[e :U 306 ]
+[e $ ! _RCIF 307  ]
+[e :U 308 ]
+[; ;serie.c: 90: c = RCREG;
+"90
+[e = _c _RCREG ]
+[; ;serie.c: 93: while(TXSTAbits.TRMT==0);
+"93
+[e $U 309  ]
+[e :U 310 ]
+[e :U 309 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 310  ]
+[e :U 311 ]
+[; ;serie.c: 94: TXREG = c;
+"94
+[e = _TXREG _c ]
+[; ;serie.c: 96: return c;
+"96
+[e ) _c ]
+[e $UE 305  ]
+[; ;serie.c: 97: }
+"97
 [e :UE 305 ]
 }
-"258
-[v _lcd_init `(v ~T0 @X0 1 ef ]
-"259
+[v F2562 `(b ~T0 @X0 1 tf ]
+"104
+[v _kbhit `AF2562 ~T0 @X0 1 e ]
+"105
 {
-[; ;Lcd4Lignes.c: 258: void lcd_init(void)
-[; ;Lcd4Lignes.c: 259: {
-[e :U _lcd_init ]
+[; ;serie.c: 104: bit kbhit(void)
+[; ;serie.c: 105: {
+[e :U _kbhit ]
 [f ]
-[; ;Lcd4Lignes.c: 261: lcd_resetSequence();
-"261
-[e ( _lcd_resetSequence ..  ]
-[; ;Lcd4Lignes.c: 262: lcd_wrCom(0x28);
-"262
-[e ( _lcd_wrCom (1 -> -> 40 `i `uc ]
-[; ;Lcd4Lignes.c: 263: lcd_wrCom(0x0F);
-"263
-[e ( _lcd_wrCom (1 -> -> 15 `i `uc ]
-[; ;Lcd4Lignes.c: 264: lcd_wrCom(0x01);
-"264
-[e ( _lcd_wrCom (1 -> -> 1 `i `uc ]
-[; ;Lcd4Lignes.c: 265: lcd_wrCom(0x06);
-"265
-[e ( _lcd_wrCom (1 -> -> 6 `i `uc ]
-[; ;Lcd4Lignes.c: 266: lcd_wrCom(0x80);
-"266
-[e ( _lcd_wrCom (1 -> -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 267: lcd_initCGRam();
-"267
-[e ( _lcd_initCGRam ..  ]
-[; ;Lcd4Lignes.c: 268: }
-"268
-[e :UE 306 ]
-}
-"276
-[v _lcd_effaceAffichage `(v ~T0 @X0 1 ef ]
-"277
-{
-[; ;Lcd4Lignes.c: 276: void lcd_effaceAffichage(void)
-[; ;Lcd4Lignes.c: 277: {
-[e :U _lcd_effaceAffichage ]
-[f ]
-[; ;Lcd4Lignes.c: 278: lcd_wrCom(0x01);
-"278
-[e ( _lcd_wrCom (1 -> -> 1 `i `uc ]
-[; ;Lcd4Lignes.c: 279: lcd_wrCom(0x80);
-"279
-[e ( _lcd_wrCom (1 -> -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 280: }
-"280
-[e :UE 307 ]
-}
-"288
-[v _lcd_curseurHome `(v ~T0 @X0 1 ef ]
-"289
-{
-[; ;Lcd4Lignes.c: 288: void lcd_curseurHome(void)
-[; ;Lcd4Lignes.c: 289: {
-[e :U _lcd_curseurHome ]
-[f ]
-[; ;Lcd4Lignes.c: 290: lcd_wrCom(0x02);
-"290
-[e ( _lcd_wrCom (1 -> -> 2 `i `uc ]
-[; ;Lcd4Lignes.c: 291: }
-"291
-[e :UE 308 ]
-}
-"300
-[v _lcd_effaceChar `(v ~T0 @X0 1 ef1`uc ]
-"301
-{
-[; ;Lcd4Lignes.c: 300: void lcd_effaceChar(unsigned char nbr)
-[; ;Lcd4Lignes.c: 301: {
-[e :U _lcd_effaceChar ]
-"300
-[v _nbr `uc ~T0 @X0 1 r1 ]
-"301
-[f ]
-"302
-[v _i `uc ~T0 @X0 1 a ]
-[; ;Lcd4Lignes.c: 302: char i;
-[; ;Lcd4Lignes.c: 303: for(i=0;i<nbr;i++)
-"303
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 313  ]
-"304
-[e :U 310 ]
-[; ;Lcd4Lignes.c: 304: lcd_wrData(' ');
-[e ( _lcd_wrData (1 -> -> 32 `ui `uc ]
-"303
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 313 ]
-[e $ < -> _i `i -> _nbr `i 310  ]
-[e :U 311 ]
-"304
-}
-[; ;Lcd4Lignes.c: 305: }
-"305
-[e :UE 309 ]
-}
-"314
-[v _lcd_gotoXY `(v ~T0 @X0 1 ef2`uc`uc ]
-"315
-{
-[; ;Lcd4Lignes.c: 314: void lcd_gotoXY(unsigned char x, unsigned char y)
-[; ;Lcd4Lignes.c: 315: {
-[e :U _lcd_gotoXY ]
-"314
-[v _x `uc ~T0 @X0 1 r1 ]
-[v _y `uc ~T0 @X0 1 r2 ]
-"315
-[f ]
-[; ;Lcd4Lignes.c: 316: switch(y)
-"316
-[e $U 316  ]
-[; ;Lcd4Lignes.c: 317: {
-"317
-{
-[; ;Lcd4Lignes.c: 318: case 1:
-"318
-[e :U 317 ]
-[; ;Lcd4Lignes.c: 319: lcd_wrCom((x-1+0x80)|0x80);
-"319
-[e ( _lcd_wrCom (1 -> | + - -> _x `i -> 1 `i -> 128 `i -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 320: break;
-"320
-[e $U 315  ]
-[; ;Lcd4Lignes.c: 321: case 2:
-"321
-[e :U 318 ]
-[; ;Lcd4Lignes.c: 322: lcd_wrCom((x-1+0xC0)|0x80);
-"322
-[e ( _lcd_wrCom (1 -> | + - -> _x `i -> 1 `i -> 192 `i -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 323: break;
-"323
-[e $U 315  ]
-[; ;Lcd4Lignes.c: 324: case 3:
-"324
-[e :U 319 ]
-[; ;Lcd4Lignes.c: 325: lcd_wrCom((x-1+0x94)|0x80);
-"325
-[e ( _lcd_wrCom (1 -> | + - -> _x `i -> 1 `i -> 148 `i -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 326: break;
-"326
-[e $U 315  ]
-[; ;Lcd4Lignes.c: 327: case 4:
-"327
-[e :U 320 ]
-[; ;Lcd4Lignes.c: 328: lcd_wrCom((x-1+0xD4)|0x80);
-"328
-[e ( _lcd_wrCom (1 -> | + - -> _x `i -> 1 `i -> 212 `i -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 329: break;
-"329
-[e $U 315  ]
-"330
-}
-[; ;Lcd4Lignes.c: 330: }
-[e $U 315  ]
-"316
-[e :U 316 ]
-[e [\ _y , $ -> -> 1 `i `uc 317
- , $ -> -> 2 `i `uc 318
- , $ -> -> 3 `i `uc 319
- , $ -> -> 4 `i `uc 320
- 315 ]
-"330
-[e :U 315 ]
-[; ;Lcd4Lignes.c: 331: }
-"331
-[e :UE 314 ]
-}
-"339
-[v _lcd_effaceLigne `(v ~T0 @X0 1 ef1`uc ]
-"340
-{
-[; ;Lcd4Lignes.c: 339: void lcd_effaceLigne(unsigned char y)
-[; ;Lcd4Lignes.c: 340: {
-[e :U _lcd_effaceLigne ]
-"339
-[v _y `uc ~T0 @X0 1 r1 ]
-"340
-[f ]
-[; ;Lcd4Lignes.c: 341: lcd_gotoXY(1,y);
-"341
-[e ( _lcd_gotoXY (2 , -> -> 1 `i `uc _y ]
-[; ;Lcd4Lignes.c: 342: lcd_effaceChar(20);
-"342
-[e ( _lcd_effaceChar (1 -> -> 20 `i `uc ]
-[; ;Lcd4Lignes.c: 343: lcd_gotoXY(1,y);
-"343
-[e ( _lcd_gotoXY (2 , -> -> 1 `i `uc _y ]
-[; ;Lcd4Lignes.c: 344: }
-"344
-[e :UE 321 ]
-}
-"359
-[v _lcd_ecritChar `(v ~T0 @X0 1 ef1`uc ]
-"360
-{
-[; ;Lcd4Lignes.c: 359: void lcd_ecritChar(unsigned char car)
-[; ;Lcd4Lignes.c: 360: {
-[e :U _lcd_ecritChar ]
-"359
-[v _car `uc ~T0 @X0 1 r1 ]
-"360
-[f ]
-"361
-[v _posRam `uc ~T0 @X0 1 a ]
-[; ;Lcd4Lignes.c: 361: unsigned char posRam;
-[; ;Lcd4Lignes.c: 363: posRam = lcd_wrData(car);
-"363
-[e = _posRam ( _lcd_wrData (1 _car ]
-[; ;Lcd4Lignes.c: 364: switch(posRam)
-"364
-[e $U 324  ]
-[; ;Lcd4Lignes.c: 365: {
-"365
-{
-[; ;Lcd4Lignes.c: 366: case 0x94:
-"366
-[e :U 325 ]
-[; ;Lcd4Lignes.c: 367: lcd_wrCom(0xC0|0x80);
-"367
-[e ( _lcd_wrCom (1 -> | -> 192 `i -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 368: break;
-"368
-[e $U 323  ]
-[; ;Lcd4Lignes.c: 369: case 0xD4:
-"369
-[e :U 326 ]
-[; ;Lcd4Lignes.c: 370: lcd_wrCom(0x94|0x80);
-"370
-[e ( _lcd_wrCom (1 -> | -> 148 `i -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 371: break;
-"371
-[e $U 323  ]
-[; ;Lcd4Lignes.c: 372: case 0xC0:
-"372
-[e :U 327 ]
-[; ;Lcd4Lignes.c: 373: lcd_wrCom(0xD4|0x80);
-"373
-[e ( _lcd_wrCom (1 -> | -> 212 `i -> 128 `i `uc ]
-[; ;Lcd4Lignes.c: 374: break;
-"374
-[e $U 323  ]
-"375
-}
-[; ;Lcd4Lignes.c: 375: }
-[e $U 323  ]
-"364
-[e :U 324 ]
-[e [\ _posRam , $ -> -> 148 `i `uc 325
- , $ -> -> 212 `i `uc 326
- , $ -> -> 192 `i `uc 327
- 323 ]
-"375
-[e :U 323 ]
-[; ;Lcd4Lignes.c: 376: }
-"376
-[e :UE 322 ]
-}
-"387
-[v _lcd_putMessage `(v ~T0 @X0 1 ef1`*Cuc ]
-"388
-{
-[; ;Lcd4Lignes.c: 387: void lcd_putMessage(const unsigned char *chaine)
-[; ;Lcd4Lignes.c: 388: {
-[e :U _lcd_putMessage ]
-"387
-[v _chaine `*Cuc ~T0 @X0 1 r1 ]
-"388
-[f ]
-"389
-[v _j `uc ~T0 @X0 1 a ]
-[; ;Lcd4Lignes.c: 389: unsigned char j;
-[; ;Lcd4Lignes.c: 391: for(j = 0; chaine[j] != 0; j++)
-"391
-{
-[e = _j -> -> 0 `i `uc ]
-[e $U 332  ]
-"392
-[e :U 329 ]
-[; ;Lcd4Lignes.c: 392: lcd_ecritChar(chaine[j]);
-[e ( _lcd_ecritChar (1 *U + _chaine * -> _j `ux -> -> # *U _chaine `ui `ux ]
-"391
-[e ++ _j -> -> 1 `i `uc ]
-[e :U 332 ]
-[e $ != -> *U + _chaine * -> _j `ux -> -> # *U _chaine `ui `ux `i -> 0 `i 329  ]
-[e :U 330 ]
-"392
-}
-[; ;Lcd4Lignes.c: 393: }
-"393
-[e :UE 328 ]
-}
-"401
-[v _lcd_cacheCurseur `(v ~T0 @X0 1 ef ]
-"402
-{
-[; ;Lcd4Lignes.c: 401: void lcd_cacheCurseur(void)
-[; ;Lcd4Lignes.c: 402: {
-[e :U _lcd_cacheCurseur ]
-[f ]
-[; ;Lcd4Lignes.c: 403: lcd_wrCom(0x0C);
-"403
-[e ( _lcd_wrCom (1 -> -> 12 `i `uc ]
-[; ;Lcd4Lignes.c: 404: }
-"404
-[e :UE 333 ]
-}
-"412
-[v _lcd_montreCurseur `(v ~T0 @X0 1 ef ]
-"413
-{
-[; ;Lcd4Lignes.c: 412: void lcd_montreCurseur(void)
-[; ;Lcd4Lignes.c: 413: {
-[e :U _lcd_montreCurseur ]
-[f ]
-[; ;Lcd4Lignes.c: 414: lcd_wrCom(0x0F);
-"414
-[e ( _lcd_wrCom (1 -> -> 15 `i `uc ]
-[; ;Lcd4Lignes.c: 415: }
-"415
-[e :UE 334 ]
-}
-"417
-[v _lcd_initCGRam `(v ~T0 @X0 1 sf ]
-"418
-{
-[; ;Lcd4Lignes.c: 417: static void lcd_initCGRam(void)
-[; ;Lcd4Lignes.c: 418: {
-[e :U _lcd_initCGRam ]
-[f ]
-"419
-[v _i `uc ~T0 @X0 1 a ]
-[v _j `uc ~T0 @X0 1 a ]
-[; ;Lcd4Lignes.c: 419: char i,j;
-[; ;Lcd4Lignes.c: 421: lcd_wrCom(0x40);
-"421
-[e ( _lcd_wrCom (1 -> -> 64 `i `uc ]
-[; ;Lcd4Lignes.c: 422: for(i=0;i<8;i++)
-"422
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 8 `i 336  ]
-[e $U 337  ]
-"423
-[e :U 336 ]
-[; ;Lcd4Lignes.c: 423: {
-{
-[; ;Lcd4Lignes.c: 424: for(j=0;j<8;j++)
-"424
-{
-[e = _j -> -> 0 `i `uc ]
-[e $ < -> _j `i -> 8 `i 339  ]
-[e $U 340  ]
-"425
-[e :U 339 ]
-[; ;Lcd4Lignes.c: 425: lcd_wrData(matCGRAM[i][j]);
-[e ( _lcd_wrData (1 *U + &U *U + &U _matCGRAM * -> _i `ux -> * -> # *U &U *U &U _matCGRAM `ui -> -> 8 `i `ui `ux * -> _j `ux -> -> # *U &U *U + &U _matCGRAM * -> _i `ux -> * -> # *U &U *U &U _matCGRAM `ui -> -> 8 `i `ui `ux `ui `ux ]
-"424
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _j `i -> 8 `i 339  ]
-[e :U 340 ]
-"425
-}
-"426
-}
-"422
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 336  ]
-[e :U 337 ]
-"426
-}
-[; ;Lcd4Lignes.c: 426: }
-[; ;Lcd4Lignes.c: 427: lcd_curseurHome();
-"427
-[e ( _lcd_curseurHome ..  ]
-[; ;Lcd4Lignes.c: 428: }
-"428
-[e :UE 335 ]
-}
-"431
-[v _lcd_strobeEnableBit `(v ~T0 @X0 1 sf ]
-"432
-{
-[; ;Lcd4Lignes.c: 431: static void lcd_strobeEnableBit(void)
-[; ;Lcd4Lignes.c: 432: {
-[e :U _lcd_strobeEnableBit ]
-[f ]
-[; ;Lcd4Lignes.c: 433: PORTAbits.RA2 = 1;
-"433
-[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-[; ;Lcd4Lignes.c: 434: __nop();
-"434
-[e ( ___nop ..  ]
-[; ;Lcd4Lignes.c: 435: PORTAbits.RA2 = 0;
-"435
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;Lcd4Lignes.c: 436: }
-"436
-[e :UE 342 ]
+[; ;serie.c: 106: return RCIF;
+"106
+[e ) -> -> _RCIF `i `b ]
+[e $UE 312  ]
+[; ;serie.c: 107: }
+"107
+[e :UE 312 ]
 }

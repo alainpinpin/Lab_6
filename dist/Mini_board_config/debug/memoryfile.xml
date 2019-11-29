@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/Mini_board_config/production\Lab_6_AA_Demineur.X.production.hex">
+  <executable name="dist/Mini_board_config/debug\Lab_6_AA_Demineur.X.debug.hex">
     <memory name="program">
       <units>bytes</units>
       <length>32768</length>
-      <used>2714</used>
-      <free>30054</free>
+      <used>3610</used>
+      <free>29158</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>1536</length>
-      <used>384</used>
-      <free>1152</free>
+      <used>379</used>
+      <free>1157</free>
     </memory>
   </executable>
 </project>

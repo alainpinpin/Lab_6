@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "serie.c"
 
 # 18 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4740,9 +4740,6 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 15 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
 # 29 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\errno.h"
 extern int errno;
 
@@ -4760,470 +4757,69 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 15 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 27 "Lcd4Lignes.h"
-void lcd_init(void);
-
-# 34
-void lcd_gotoXY(unsigned char x, unsigned char y);
-
-# 39
-void lcd_curseurHome(void);
-
-# 45
-void lcd_ecritChar(unsigned char car);
-
-# 51
-void lcd_putMessage(const unsigned char *chaine);
-
-# 56
-void lcd_effaceAffichage(void);
-
-# 62
-void lcd_effaceLigne(unsigned char y);
-
-# 68
-void lcd_effaceChar(unsigned char nbr);
-
-# 73
-void lcd_cacheCurseur(void);
-
-# 78
-void lcd_montreCurseur(void);
-
 # 11 "serie.h"
 void init_serie(void);
 
-# 4 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\__size_t.h"
-typedef unsigned size_t;
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdio.h"
-struct __prbuf
+# 29 "serie.c"
+void init_serie(void)
 {
-char * ptr;
-void (* func)(char);
-};
 
-# 88
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
+TRISCbits.TRISC7=1;
+TRISCbits.TRISC6=1;
 
 
 
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+SPBRGH=0x00;
+SPBRG=25;
+BAUDCONbits.BRG16=1;
+TXSTAbits.BRGH=1;
 
 
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
+TXSTAbits.SYNC=0;
+TXSTAbits.TXEN=1;
+RCSTAbits.CREN = 1;
+RCSTAbits.SPEN=1;
+ANSEL = 0;
+}
 
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+# 57
+void putch(char car)
+{
 
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
+while(TXSTAbits.TRMT==0);
+TXREG = car;
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdlib.h"
-typedef unsigned short wchar_t;
+}
 
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
+# 70
+char getch(void)
+{
+unsigned char c;
 
-# 65
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
+while (!RCIF)
+;
+c = RCREG;
 
-# 73
-extern long strtol(const char *, char **, int);
+return c;
+}
 
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-# 85
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
+# 86
+char getche(void)
+{
+unsigned char c;
+while (!RCIF);
+c = RCREG;
 
 
+while(TXSTAbits.TRMT==0);
+TXREG = c;
 
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
+return c;
+}
 
 # 104
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 14 "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-# 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
-# 40 "main.c"
-void initialisation(void);
-char getAnalog(char canal);
-void lcd_init(void);
-void init_serie(void);
-void lcd_curseurHome(void);
-void lcd_effaceAffichage(void);
-void lcd_putMessage(const unsigned char *chaine);
-void lcd_gotoXY(unsigned char x, unsigned char y);
-void lcd_ecritChar(unsigned char car);
-int stricmp(const char *string1, const char *string2);
-
-bool perdu(void);
-void affichePerdu(int pts);
-char *strcpy(char *dest, const char *src);
-bool testEtat(void);
-
-void initTabVue(void);
-void rempliMines(int nb);
-void metToucheCombien(void);
-void afficheTabVue(void);
-char calculToucheCombien(int ligne, int colonne);
-void deplace(char* x, char* y);
-bool demine(char x, char y);
-void enleveTuilesAutour(char x, char y);
-bool gagne(int* pMines);
-
-
-
-
-char m_tabMines[4][20+1];
-char m_tabVue[4][20+1];
-
-
-void main(void)
+bit kbhit(void)
 {
-
-const char afficheNom[] = "Lab6 Alexandre Alain";
-int posX = 1;
-int posY = 1;
-bool etatInitSW = 0;
-bool etatAfterSW = 0;
-int nbMines = 5;
-
-
-initialisation();
-lcd_init();
-init_serie();
-
-lcd_gotoXY(1, 1);
-lcd_putMessage(afficheNom);
-
-_delay((unsigned long)((1500)*(1000000/4000.0)));
-
-etatInitSW = testEtat();
-etatAfterSW = etatInitSW;
-
-initTabVue();
-rempliMines(nbMines);
-metToucheCombien();
-afficheTabVue();
-
-while(1)
-{
-
-
-
-etatInitSW = testEtat();
-
-if( (etatInitSW != etatAfterSW) && (etatAfterSW == 0) )
-{
-
-}
-
-etatAfterSW = etatInitSW;
-
-
-_delay((unsigned long)((100)*(1000000/4000.0)));
-
-}
-}
-
-# 126
-void afficheTabVue(void)
-{
-lcd_effaceAffichage();
-lcd_gotoXY(1, 1);
-lcd_putMessage(m_tabVue[0]);
-lcd_gotoXY(1, 2);
-lcd_putMessage(m_tabVue[1]);
-lcd_gotoXY(1, 3);
-lcd_putMessage(m_tabVue[2]);
-lcd_gotoXY(1, 4);
-lcd_putMessage(m_tabVue[3]);
-}
-
-# 146
-void initTabVue(void)
-{
-for(int i = 0 ; i < 4 ; i++)
-{
-for(int k = 0 ; k < 20 ; k++)
-{
-m_tabVue[i][k] = 1;
-}
-}
-}
-
-# 164
-void rempliMines(int nb)
-{
-bool tabSafe[4][20];
-char testX = 0;
-char testY = 0;
-
-
-for(int j = 0 ; j < 20 ; j++)
-{
-for(int m = 0; m < 4 ; m++)
-{
-tabSafe[m][j] = 0;
-m_tabMines[m][j] = ' ';
-}
-}
-
-
-for(int i = 0 ; i < nb ; i++)
-{
-do
-{
-testX = rand()%20;
-testY = rand()%4;
-}
-while(tabSafe[testY][testX] == 1);
-
-tabSafe[testY][testX] = 1;
-m_tabMines[testY][testX] = 2;
-}
-}
-
-# 204
-void metToucheCombien(void)
-{
-char chiffre;
-
-for(int j = 0 ; j < 20 ; j++)
-{
-for(int m = 0; m < 4 ; m++)
-{
-chiffre = calculToucheCombien(m, j);
-
-if( chiffre != 0)
-{
-m_tabMines[m][j] = 48 + chiffre;
-}
-
-}
-}
-}
-
-# 228
-char calculToucheCombien(int ligne, int colonne)
-{
-char nombre = 0;
-char minLigne = -1;
-char maxLigne = 2;
-char minCol = -1;
-char maxCol = 2;
-
-if(ligne == 0)
-minLigne++;
-if(ligne == 3)
-maxLigne--;
-if(colonne == 0)
-minCol++;
-if(colonne == 19)
-maxCol--;
-
-
-for(int j = minCol ; j < maxCol ; j++)
-{
-for(int m = minLigne; m < maxLigne ; m++)
-{
-if( m_tabMines[ligne+m][colonne+j] == 2)
-{
-nombre++;
-}
-}
-}
-
-return nombre;
-}
-
-# 266
-void deplace(char* x, char* y)
-{
-
-}
-
-# 279
-bool demine(char x, char y)
-{
-int nbMines = 5;
-}
-
-# 290
-void enleveTuilesAutour(char x, char y)
-{
-
-}
-
-# 302
-bool gagne(int* pMines)
-{
-
-}
-
-# 312
-bool testEtat(void)
-{
-if(PORTBbits.RB1 == 0)
-{
-return 1;
-}
-else
-{
-return 0;
-}
-}
-
-# 329
-char getAnalog(char canal)
-{
-ADCON0bits.CHS = canal;
-_delay((unsigned long)((1)*(1000000/4000000.0)));
-ADCON0bits.GO_DONE = 1;
-while (ADCON0bits.GO_DONE == 1);
-return ADRESH;
-}
-
-# 343
-void initialisation(void)
-{
-TRISD = 0;
-
-ANSELH = 0;
-TRISB = 0xFF;
-
-ANSEL = 0;
-TRISA = 0;
-
-
-
-T1CONbits.TMR1ON = 1;
-srand(TMR1);
-
-
-ANSELbits.ANS7 = 1;
-
-ADCON0bits.ADON = 1;
-ADCON1 = 0;
-
-ADCON2bits.ADFM = 0;
-ADCON2bits.ACQT = 0;
-ADCON2bits.ADCS = 0;
-
-
-
-T0CONbits.TMR0ON = 1;
-T0CONbits.T08BIT = 0;
-T0CONbits.T0CS = 0;
-T0CONbits.PSA = 0;
-T0CONbits.T0PS = 0b010;
-
-INTCONbits.TMR0IE = 1;
-INTCONbits.TMR0IF = 0;
-INTCONbits.PEIE = 1;
-INTCONbits.GIE = 1;
+return RCIF;
 }
 

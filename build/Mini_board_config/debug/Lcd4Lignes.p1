@@ -3008,7 +3008,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Lcd4Lignes.h: 78: void lcd_montreCurseur(void);
 [v F2555 `uc ~T0 @X0 -> 8 `i t ]
 "66 Lcd4Lignes.c
-[v _matCGRAM `F2555 ~T0 @X0 -> 8 `i e ]
+[v _matCGRAM `AF2555 ~T0 @X0 -> 8 `i e ]
 [i _matCGRAM
 :U ..
 :U ..
@@ -3120,8 +3120,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Lcd4Lignes.c: 85: static void lcd_resetSequence(void);
 [; ;Lcd4Lignes.c: 86: static void lcd_initCGRam(void);
 [; ;Lcd4Lignes.c: 87: static void lcd_strobeEnableBit(void);
+[v F2573 `(uc ~T0 @X0 1 tf ]
 "93
-[v _lcd_lireDonnees `(uc ~T0 @X0 1 sf ]
+[v _lcd_lireDonnees `AF2573 ~T0 @X0 1 s ]
 "94
 {
 [; ;Lcd4Lignes.c: 93: static unsigned char lcd_lireDonnees(void)
@@ -3136,8 +3137,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "98
 [e :UE 296 ]
 }
+[v F2575 `(v ~T0 @X0 1 tf1`uc ]
 "107
-[v _lcd_ecrireDonnees `(v ~T0 @X0 1 sf1`uc ]
+[v _lcd_ecrireDonnees `AF2575 ~T0 @X0 1 s ]
 "108
 {
 [; ;Lcd4Lignes.c: 107: static void lcd_ecrireDonnees(unsigned char donnee)
@@ -3154,8 +3156,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "115
 [e :UE 297 ]
 }
+[v F2577 `(uc ~T0 @X0 1 tf ]
 "124
-[v _lcd_busy `(uc ~T0 @X0 1 sf ]
+[v _lcd_busy `AF2577 ~T0 @X0 1 s ]
 "125
 {
 [; ;Lcd4Lignes.c: 124: static unsigned char lcd_busy(void)
@@ -3225,8 +3228,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "148
 [e :UE 298 ]
 }
+[v F2582 `(uc ~T0 @X0 1 tf1`uc ]
 "156
-[v _lcd_wrCom `(uc ~T0 @X0 1 sf1`uc ]
+[v _lcd_wrCom `AF2582 ~T0 @X0 1 s ]
 "157
 {
 [; ;Lcd4Lignes.c: 156: static unsigned char lcd_wrCom(unsigned char commande)
@@ -3290,8 +3294,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "180
 [e :UE 302 ]
 }
+[v F2589 `(uc ~T0 @X0 1 tf1`uc ]
 "188
-[v _lcd_wrData `(uc ~T0 @X0 1 sf1`uc ]
+[v _lcd_wrData `AF2589 ~T0 @X0 1 s ]
 "189
 {
 [; ;Lcd4Lignes.c: 188: static unsigned char lcd_wrData(unsigned char caractere)
@@ -3348,8 +3353,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "208
 [e :UE 304 ]
 }
+[v F2595 `(v ~T0 @X0 1 tf ]
 "221
-[v _lcd_resetSequence `(v ~T0 @X0 1 sf ]
+[v _lcd_resetSequence `AF2595 ~T0 @X0 1 s ]
 "222
 {
 [; ;Lcd4Lignes.c: 221: static void lcd_resetSequence(void)
@@ -3411,8 +3417,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "250
 [e :UE 305 ]
 }
+[v F2602 `(v ~T0 @X0 1 tf ]
 "258
-[v _lcd_init `(v ~T0 @X0 1 ef ]
+[v _lcd_init `AF2602 ~T0 @X0 1 e ]
 "259
 {
 [; ;Lcd4Lignes.c: 258: void lcd_init(void)
@@ -3444,8 +3451,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "268
 [e :UE 306 ]
 }
+[v F2604 `(v ~T0 @X0 1 tf ]
 "276
-[v _lcd_effaceAffichage `(v ~T0 @X0 1 ef ]
+[v _lcd_effaceAffichage `AF2604 ~T0 @X0 1 e ]
 "277
 {
 [; ;Lcd4Lignes.c: 276: void lcd_effaceAffichage(void)
@@ -3462,8 +3470,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "280
 [e :UE 307 ]
 }
+[v F2606 `(v ~T0 @X0 1 tf ]
 "288
-[v _lcd_curseurHome `(v ~T0 @X0 1 ef ]
+[v _lcd_curseurHome `AF2606 ~T0 @X0 1 e ]
 "289
 {
 [; ;Lcd4Lignes.c: 288: void lcd_curseurHome(void)
@@ -3477,8 +3486,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "291
 [e :UE 308 ]
 }
+[v F2608 `(v ~T0 @X0 1 tf1`uc ]
 "300
-[v _lcd_effaceChar `(v ~T0 @X0 1 ef1`uc ]
+[v _lcd_effaceChar `AF2608 ~T0 @X0 1 e ]
 "301
 {
 [; ;Lcd4Lignes.c: 300: void lcd_effaceChar(unsigned char nbr)
@@ -3511,8 +3521,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "305
 [e :UE 309 ]
 }
+[v F2612 `(v ~T0 @X0 1 tf2`uc`uc ]
 "314
-[v _lcd_gotoXY `(v ~T0 @X0 1 ef2`uc`uc ]
+[v _lcd_gotoXY `AF2612 ~T0 @X0 1 e ]
 "315
 {
 [; ;Lcd4Lignes.c: 314: void lcd_gotoXY(unsigned char x, unsigned char y)
@@ -3582,8 +3593,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "331
 [e :UE 314 ]
 }
+[v F2614 `(v ~T0 @X0 1 tf1`uc ]
 "339
-[v _lcd_effaceLigne `(v ~T0 @X0 1 ef1`uc ]
+[v _lcd_effaceLigne `AF2614 ~T0 @X0 1 e ]
 "340
 {
 [; ;Lcd4Lignes.c: 339: void lcd_effaceLigne(unsigned char y)
@@ -3606,8 +3618,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "344
 [e :UE 321 ]
 }
+[v F2616 `(v ~T0 @X0 1 tf1`uc ]
 "359
-[v _lcd_ecritChar `(v ~T0 @X0 1 ef1`uc ]
+[v _lcd_ecritChar `AF2616 ~T0 @X0 1 e ]
 "360
 {
 [; ;Lcd4Lignes.c: 359: void lcd_ecritChar(unsigned char car)
@@ -3672,8 +3685,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "376
 [e :UE 322 ]
 }
+[v F2619 `(v ~T0 @X0 1 tf1`*Cuc ]
 "387
-[v _lcd_putMessage `(v ~T0 @X0 1 ef1`*Cuc ]
+[v _lcd_putMessage `AF2619 ~T0 @X0 1 e ]
 "388
 {
 [; ;Lcd4Lignes.c: 387: void lcd_putMessage(const unsigned char *chaine)
@@ -3706,8 +3720,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "393
 [e :UE 328 ]
 }
+[v F2622 `(v ~T0 @X0 1 tf ]
 "401
-[v _lcd_cacheCurseur `(v ~T0 @X0 1 ef ]
+[v _lcd_cacheCurseur `AF2622 ~T0 @X0 1 e ]
 "402
 {
 [; ;Lcd4Lignes.c: 401: void lcd_cacheCurseur(void)
@@ -3721,8 +3736,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "404
 [e :UE 333 ]
 }
+[v F2624 `(v ~T0 @X0 1 tf ]
 "412
-[v _lcd_montreCurseur `(v ~T0 @X0 1 ef ]
+[v _lcd_montreCurseur `AF2624 ~T0 @X0 1 e ]
 "413
 {
 [; ;Lcd4Lignes.c: 412: void lcd_montreCurseur(void)
@@ -3736,8 +3752,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "415
 [e :UE 334 ]
 }
+[v F2626 `(v ~T0 @X0 1 tf ]
 "417
-[v _lcd_initCGRam `(v ~T0 @X0 1 sf ]
+[v _lcd_initCGRam `AF2626 ~T0 @X0 1 s ]
 "418
 {
 [; ;Lcd4Lignes.c: 417: static void lcd_initCGRam(void)
@@ -3793,8 +3810,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "428
 [e :UE 335 ]
 }
+[v F2630 `(v ~T0 @X0 1 tf ]
 "431
-[v _lcd_strobeEnableBit `(v ~T0 @X0 1 sf ]
+[v _lcd_strobeEnableBit `AF2630 ~T0 @X0 1 s ]
 "432
 {
 [; ;Lcd4Lignes.c: 431: static void lcd_strobeEnableBit(void)

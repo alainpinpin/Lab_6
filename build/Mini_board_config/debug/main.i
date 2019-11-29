@@ -4989,7 +4989,7 @@ int posX = 1;
 int posY = 1;
 bool etatInitSW = 0;
 bool etatAfterSW = 0;
-int nbMines = 5;
+int nbMines = 10;
 
 
 initialisation();
@@ -4999,7 +4999,7 @@ init_serie();
 lcd_gotoXY(1, 1);
 lcd_putMessage(afficheNom);
 
-_delay((unsigned long)((1500)*(1000000/4000.0)));
+
 
 etatInitSW = testEtat();
 etatAfterSW = etatInitSW;
@@ -5007,6 +5007,17 @@ etatAfterSW = etatInitSW;
 initTabVue();
 rempliMines(nbMines);
 metToucheCombien();
+
+lcd_effaceAffichage();
+lcd_gotoXY(1, 1);
+lcd_putMessage(m_tabMines[0]);
+lcd_gotoXY(1, 2);
+lcd_putMessage(m_tabMines[1]);
+lcd_gotoXY(1, 3);
+lcd_putMessage(m_tabMines[2]);
+lcd_gotoXY(1, 4);
+lcd_putMessage(m_tabMines[3]);
+
 afficheTabVue();
 
 while(1)
@@ -5029,7 +5040,7 @@ _delay((unsigned long)((100)*(1000000/4000.0)));
 }
 }
 
-# 126
+# 137
 void afficheTabVue(void)
 {
 lcd_effaceAffichage();
@@ -5043,7 +5054,7 @@ lcd_gotoXY(1, 4);
 lcd_putMessage(m_tabVue[3]);
 }
 
-# 146
+# 157
 void initTabVue(void)
 {
 for(int i = 0 ; i < 4 ; i++)
@@ -5055,7 +5066,7 @@ m_tabVue[i][k] = 1;
 }
 }
 
-# 164
+# 175
 void rempliMines(int nb)
 {
 bool tabSafe[4][20];
@@ -5080,17 +5091,17 @@ do
 testX = rand()%20;
 testY = rand()%4;
 }
-while(tabSafe[testY][testX] == 1);
+while(m_tabMines[testY][testX] == 2);
 
 tabSafe[testY][testX] = 1;
 m_tabMines[testY][testX] = 2;
 }
 }
 
-# 204
+# 215
 void metToucheCombien(void)
 {
-char chiffre;
+char chiffre = 0;
 
 for(int j = 0 ; j < 20 ; j++)
 {
@@ -5098,7 +5109,8 @@ for(int m = 0; m < 4 ; m++)
 {
 chiffre = calculToucheCombien(m, j);
 
-if( chiffre != 0)
+
+if( chiffre != 0 && m_tabMines[m][j] != 2)
 {
 m_tabMines[m][j] = 48 + chiffre;
 }
@@ -5107,13 +5119,13 @@ m_tabMines[m][j] = 48 + chiffre;
 }
 }
 
-# 228
+# 240
 char calculToucheCombien(int ligne, int colonne)
 {
 char nombre = 0;
-char minLigne = -1;
+signed char minLigne = -1;
 char maxLigne = 2;
-char minCol = -1;
+signed char minCol = -1;
 char maxCol = 2;
 
 if(ligne == 0)
@@ -5126,9 +5138,9 @@ if(colonne == 19)
 maxCol--;
 
 
-for(int j = minCol ; j < maxCol ; j++)
+for(signed char j = minCol ; j < maxCol ; j++)
 {
-for(int m = minLigne; m < maxLigne ; m++)
+for(signed char m = minLigne; m < maxLigne ; m++)
 {
 if( m_tabMines[ligne+m][colonne+j] == 2)
 {
@@ -5140,31 +5152,31 @@ nombre++;
 return nombre;
 }
 
-# 266
+# 278
 void deplace(char* x, char* y)
 {
 
 }
 
-# 279
+# 291
 bool demine(char x, char y)
 {
-int nbMines = 5;
+int nbMines = 10;
 }
 
-# 290
+# 302
 void enleveTuilesAutour(char x, char y)
 {
 
 }
 
-# 302
+# 314
 bool gagne(int* pMines)
 {
 
 }
 
-# 312
+# 324
 bool testEtat(void)
 {
 if(PORTBbits.RB1 == 0)
@@ -5177,7 +5189,7 @@ return 0;
 }
 }
 
-# 329
+# 341
 char getAnalog(char canal)
 {
 ADCON0bits.CHS = canal;
@@ -5187,7 +5199,7 @@ while (ADCON0bits.GO_DONE == 1);
 return ADRESH;
 }
 
-# 343
+# 355
 void initialisation(void)
 {
 TRISD = 0;

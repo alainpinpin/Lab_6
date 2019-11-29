@@ -24,6 +24,7 @@
 
 
 /********************** CONSTANTES *******************************************/
+#define _XTAL_FREQ 1000000 //Constante utilisée par __delay_ms(x). Doit = fréq interne du uC
 #define NB_LIGNE 4  //afficheur LCD 4x20
 #define NB_COL 20
 #define AXE_X 7  //canal analogique de l'axe x
@@ -32,7 +33,7 @@
 #define TUILE 1 //caractère cgram d'une tuile
 #define MINE 2 //caractère cgram d'une mine
 
-
+#define STARTINGBOMBS 10 //Changer ici pour le nombre initiale de bombes
 
 
 /********************** PROTOTYPES *******************************************/
@@ -47,8 +48,6 @@ void lcd_gotoXY(unsigned char x, unsigned char y);
 void lcd_ecritChar(unsigned char car);
 int stricmp(const char *string1, const char *string2);
 
-void deplace(char* x);
-void feu(char x, int* pts);
 bool perdu(void);
 void affichePerdu(int pts);
 char *strcpy(char *dest, const char *src);
@@ -57,6 +56,7 @@ bool testEtat(void);
 void initTabVue(void);
 void rempliMines(int nb);
 void metToucheCombien(void);
+void afficheTabVue(void);
 char calculToucheCombien(int ligne, int colonne);
 void deplace(char* x, char* y);
 bool demine(char x, char y);
@@ -74,58 +74,78 @@ void main(void)
 {
     /*********variables locales du main********/
     const char afficheNom[] = "Lab6 Alexandre Alain";  
-    int posX = 10; //posisition du joueur, initialement à 10 (milieu)
-    int pointage = 0; //pour compter le nombre de points
+    int posX = 1; //posisition du joueur, initialement à 1/1
+    int posY = 1;     
     bool etatInitSW = false; //servira à éviter que le joueur laisse le bouton appuyé
     bool etatAfterSW = false;
+    int nbMines = STARTINGBOMBS;
     
     /*********début du code********************/
     initialisation(); //initialise les entrés/sorties
     lcd_init();
     init_serie();    
-    lcd_cacheCurseur(); //enlève le curseur car le flash "gossait"    
+    //lcd_cacheCurseur(); //enlève le curseur car le flash "gossait"    
     lcd_gotoXY(1, 1);    
     lcd_putMessage(afficheNom); //affiche nom et labo avant de commencer
     
-    __delay_ms(2000);
+    //__delay_ms(2000);
         
     etatInitSW = testEtat(); //mets l'état de la swicth avant/après à jour
     etatAfterSW = etatInitSW;
     
+    initTabVue();
+    rempliMines(nbMines);
+    metToucheCombien();
+    
+    lcd_effaceAffichage();
+    lcd_gotoXY(1, 1);
+    lcd_putMessage(m_tabMines[0]);
+    lcd_gotoXY(1, 2);
+    lcd_putMessage(m_tabMines[1]);
+    lcd_gotoXY(1, 3);
+    lcd_putMessage(m_tabMines[2]);
+    lcd_gotoXY(1, 4);
+    lcd_putMessage(m_tabMines[3]);
+    
+    afficheTabVue();
+    
     while(1) //boucle principale
     {        
         
-        if(m_tempsDAfficher == true)//si temps écoulé, selon valeur entrée dans les defines
-        {
-            nouveauxAliens(); //fait apparaître les aliens dans la matrice
-            
-            if(perdu() == true) //regarde si le joueur a perdu la partie
-            {
-                affichePerdu(pointage); //affiche message de game over et le pointage final
-                posX = 10;//remet le joueur eu milieu
-                videAliens(); // vide le matrice pour recommencer la partie à neuf
-                pointage = 0; //reset le score à 0
-            }
-            
-            afficheAliens(); //affiche la matrice(aliens) sur le LCD
-            lcd_gotoXY(posX, 4);
-            m_tempsDAfficher = false; //remets a false pour un nouveau timer
-        }
-        
-        deplace(&posX); //déplace le joueur selon le sens voulu
+        //deplace(posX, posY);
         
         etatInitSW = testEtat(); //regarde l'état de la switch
         
         if( (etatInitSW != etatAfterSW) && (etatAfterSW == false) ) //si SW manette apuyé, trouvé c'est lequel
         {
-            feu(posX, &pointage);
+            //feu(posX, &pointage);
         }
         
         etatAfterSW = etatInitSW; //enregistre le dernier état
+        
+        
         __delay_ms(100);
+        
     }
 }
 
+/*
+ * @brief Affiche sur le LCD notre matrice m_tabVue.
+ * @param rien
+ * @return rien
+ */
+void afficheTabVue(void)
+{
+    lcd_effaceAffichage();
+    lcd_gotoXY(1, 1);
+    lcd_putMessage(m_tabVue[0]);
+    lcd_gotoXY(1, 2);
+    lcd_putMessage(m_tabVue[1]);
+    lcd_gotoXY(1, 3);
+    lcd_putMessage(m_tabVue[2]);
+    lcd_gotoXY(1, 4);
+    lcd_putMessage(m_tabVue[3]);
+}
 
 /*
  * @brief Rempli le tableau m_tabVue avec le caractère spécial (définie en CGRAM
@@ -136,7 +156,13 @@ void main(void)
  */
 void initTabVue(void)
 {
-    
+    for(int i = 0 ; i < NB_LIGNE ; i++)
+    {
+        for(int k = 0 ; k < NB_COL ; k++)
+        {
+            m_tabVue[i][k] = TUILE;
+        }
+    }
 }
  
 /*
@@ -148,7 +174,33 @@ void initTabVue(void)
  */
 void rempliMines(int nb)
 {
+    bool tabSafe[NB_LIGNE][NB_COL]; //matrice pour s'assurer que 2 bombe ne se "stack" pas
+    char testX = 0;
+    char testY = 0;
     
+    //mets la tableau de safety a false et mets les espaces dans tabMines 
+    for(int j = 0 ; j < NB_COL ; j++)
+    {
+        for(int m = 0; m < NB_LIGNE ; m++)
+        {
+            tabSafe[m][j] = false;
+            m_tabMines[m][j] = ' ';
+        }
+    }
+          
+    //mets les mines dans la matrice m_tabMines aléatoirement
+    for(int i = 0 ; i < nb ; i++)
+    {
+        do
+        {            
+            testX = rand()%20;
+            testY = rand()%4;
+        }
+        while(tabSafe[testY][testX] == true);// s'assure que le case n'est pas déjà occupée
+
+        tabSafe[testY][testX] = true;//mets la case à true pour éviter de réécrire par dessus
+        m_tabMines[testY][testX] = MINE; //mets une mine à l'endroit vide
+    }  
 }
  
 /*
@@ -162,7 +214,22 @@ void rempliMines(int nb)
  */
 void metToucheCombien(void)
 {
+    char chiffre = 0;
     
+    for(int j = 0 ; j < NB_COL ; j++)
+    {
+        for(int m = 0; m < NB_LIGNE ; m++)
+        {
+            chiffre = calculToucheCombien(m, j);
+            //chiffre = 2;
+            
+            if( chiffre != 0 && m_tabMines[m][j] != MINE)
+            {
+                m_tabMines[m][j] = 48 + chiffre; //regarder si mets bombe ou chiffre**************************************8
+            }
+             
+        }
+    }    
 }
  
 /*
@@ -172,7 +239,34 @@ void metToucheCombien(void)
  */
 char calculToucheCombien(int ligne, int colonne)
 {
+    char nombre = 0;
+    signed char minLigne = -1;
+    char maxLigne = 2;
+    signed char minCol = -1;
+    char maxCol = 2;
     
+    if(ligne == 0)
+        minLigne++;
+    if(ligne == 3)
+        maxLigne--;
+    if(colonne == 0)
+        minCol++;
+    if(colonne == 19)
+        maxCol--;
+    
+    
+    for(signed char j = minCol ; j < maxCol ; j++)
+    {
+        for(signed char m = minLigne; m < maxLigne ; m++)
+        {            
+            if( m_tabMines[ligne+m][colonne+j] == MINE)
+            {
+                nombre++;
+            }
+        }
+    }    
+    
+    return nombre;
 }
  
 /**
@@ -196,7 +290,7 @@ void deplace(char* x, char* y)
  */
 bool demine(char x, char y)
 {
-    
+    int nbMines = STARTINGBOMBS;
 }
  
 /*
@@ -222,22 +316,6 @@ bool gagne(int* pMines)
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
  * @brief Renvoie l'état actuel de la SW par true ou false
  * @param rien
@@ -254,208 +332,6 @@ bool testEtat(void)
         return false;
     }
 }
-
-/*
- * @brief Décale les lignes vers le bas et génère une nouvelle ligne avec NB_ALIENS aliens et m_niveau
- * Note: Cette méthode n'affiche rien sur l'afficheur LCD. Elle ne travaille qu'avec la matrice m_aliens[][]
- * @param rien
- * @return rien
- */
-void nouveauxAliens()
-{
-    int posAlien[NB_COL]; //tableau pour gérer si place déjà occupé ou non
-    int verifPosition = 0;
-    int i = 0;
-    int monstre = 0;
-    
-    //recopie la ligne une ligne plus bas en partant de la plus basse
-    strcpy(m_aliens[3], m_aliens[2]);
-    strcpy(m_aliens[2], m_aliens[1]);
-    strcpy(m_aliens[1], m_aliens[0]);
-    
-    //mets la nouvelle ligne et la vérif. à 0 pour afficher nouveaux aliens
-    for(int j = 0 ; j < NB_COL ; j++)
-    {
-        posAlien[j] = 0;
-        m_aliens[0][j] = ' ';
-    }
-    
-    //ajoute des aliens sur la ligne/matrice jusqu'au nombre en cours selon le niveau
-    while(i < (NB_ALIENS + m_niveau))
-    {
-        verifPosition = rand() % 20;
-        if(posAlien[verifPosition] == 0)
-        {
-            monstre = rand()%3+1; //random pour le monstre à afficher
-            m_aliens[0][verifPosition] = monstre; //mets le monstre dans la matrice et sur le LCD
-            posAlien[verifPosition] = 1;
-            i++;
-        }
-    }    
-}
- 
-/*
- * @brief Affiche les 4 lignes de la matrice m_aliens[][] sur l'afficheur LCD.
- * @param rien
- * @return rien
- */
-void afficheAliens()
-{
-    lcd_effaceAffichage(); //efface le tout avant d'afficher les nouvelles lignes
-    
-    for(int i = 0 ; i < 4 ; i++) //affiche les 4 lignes de la matrice aliens sur la LCD
-    {
-        lcd_gotoXY(1, i+1);
-        lcd_putMessage(m_aliens[i]);
-    }
-    
-}
-
-/*
- * @brief Efface jeu et vide matrice des aliens pour une nouvelle partie.
- * @param rien
- * @return rien
- */
-void videAliens()
-{
-    lcd_effaceAffichage();
-    //remets toute la matrice à ' ' (vide)
-    for(int i =0 ; i < NB_LIGNE ; i++)
-    {
-        for(int j = 0 ; j < NB_COL ; j++)
-        {        
-            m_aliens[i][j] = ' ';
-        }
-    }    
-    
-}
- 
-/**
- * @brief Si la manette est vers la droite ou la gauche, on déplace le curseur d'une position
- * @param La position X sur la ligne (i.e. le pointeur de posX du main).
- * @return rien
- */
-void deplace(char* x)
-{
-    int tension; //pour enregistrer la valeur binaire lu
-    //pour enlever la dernière position du joueur
-    const char effaceJoueur[21] = {"                    "};
-    
-    tension = getAnalog(7); //capture la tension
-        
-    //regarde la tension du du joystick, si < ou > on posX ++ ou --
-    if(tension > 200)
-    {
-        *x = *x + 1;
-    }
-    else if(tension < 50)
-    {
-        *x = *x - 1;
-    }
-    
-    //pour qd dépasse les limites
-    if(*x == 21)
-        *x = 1;
-    if(*x == 0)
-        *x = 20;
-    
-    //efface dernière position et place nouvelle position du joueur
-    lcd_gotoXY(1, 4);
-    lcd_putMessage(effaceJoueur);
-    lcd_gotoXY(*x, 4);
-    lcd_ecritChar('A');
-}
- 
-/*
- * @brief S'il y a un alien en haut (ligne 0,1 ou 2 en position X), on le tue
- * @param La position X sur la ligne. Le pointeur vers le nombre de points (le nombre d'aliens morts).
- * @return rien
- */
-void feu(char x, int* pts)
-{
-    for(int i = 2 ; i>= 0 ; i--) //part du bas vers la haut
-    {
-        if(m_aliens[i][x-1] != ' ') //vérifie s'il y a un alien devant
-        {
-            //incrémente les pts selon quel alien a été tué
-            if(m_aliens[i][x-1] == 1)
-            {
-                *pts = *pts + 1;
-            }
-            if(m_aliens[i][x-1] == 2)
-            {
-                *pts = *pts + 2;
-            }
-            if(m_aliens[i][x-1] == 3)
-            {
-                *pts = *pts + 3;
-            }
-            m_aliens[i][x-1] = ' '; //enlève l'alien de la matrice
-            lcd_gotoXY(x, i+1);
-            lcd_ecritChar(' '); //efface tout de suite l'alien du LCD
-            
-            break;
-        }
-    }    
-}
- 
-/*
- * @brief Lorsqu'on arrive ici, le temps d'affichage d'un écran est écoulé.
- *        Donc, s'il y a au moins 1 aliens sur la ligne 3, on a perdu
- * @param rien
- * @return vrai si on a perdu, faux sinon
- */
-bool perdu(void)
-{
-    //tableau vide pour savoir si le joueur a tué tous les aliens
-    const char safe[21] = {"                    "};
-    
-    //compare la ligne d'alien à la ligne safe pour savoir si perdu
-    if(strcmp(safe, m_aliens[3]) == 0)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }    
-}
- 
- 
-/*
- * @brief Affiche le nombre de points obtenus pendant 3 secondes.
- * @param int pts. Les points accumulés
- * @return rien
- */
-void affichePerdu(int pts)
-{
-    const char gameOver[] = "LOL you lost"; //pcq juste dire perdu c'est pas assez ^^    
-    char ptsChar[3];
-    //Crée une string en incluant le score final pour le lcd_putMessage
-    sprintf(ptsChar, "Score = %3d", pts);
-    
-    //affiche le message (pas gentil) de game over et pointage final
-    lcd_effaceAffichage();
-    lcd_gotoXY(4, 1);
-    lcd_putMessage(gameOver);
-    lcd_gotoXY(4, 3);
-    lcd_putMessage(ptsChar);
-    __delay_ms(2000);
-    lcd_effaceAffichage();
-    
-    //si plus de 10 pts, prochaine partie monte le niveau de difficulté
-    //et ajoute un alien
-    if(pts > 10)
-    {
-        m_niveau++;
-        if(m_niveau> (20-NB_ALIENS) ) //pour avoir max 20 aliens en jeu
-        {
-            m_niveau = (20-NB_ALIENS);
-        }
-    }    
-}
-
-
 
 /*
  * @brief Lit le port analogique. 
@@ -508,11 +384,224 @@ void initialisation(void)
     T0CONbits.T0CS      = 0;
     T0CONbits.PSA       = 0; // prescaler enabled
     T0CONbits.T0PS      = 0b010; // 1:8 pre-scaler
-    TMR0 = DELAI_TMR0;
+    //TMR0 = DELAI_TMR0;
     INTCONbits.TMR0IE   = 1;  // timer 0 interrupt enable
     INTCONbits.TMR0IF   = 0; // timer 0 interrupt flag
     INTCONbits.PEIE = 1; //permet interruption des périphériques
     INTCONbits.GIE = 1;  //interruptions globales permises
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * @brief Décale les lignes vers le bas et génère une nouvelle ligne avec NB_ALIENS aliens et m_niveau
+ * Note: Cette méthode n'affiche rien sur l'afficheur LCD. Elle ne travaille qu'avec la matrice m_aliens[][]
+ * @param rien
+ * @return rien
+ *
+void nouveauxAliens()
+{
+    int posAlien[NB_COL]; //tableau pour gérer si place déjà occupé ou non
+    int verifPosition = 0;
+    int i = 0;
+    int monstre = 0;
+    
+    //recopie la ligne une ligne plus bas en partant de la plus basse
+    strcpy(m_aliens[3], m_aliens[2]);
+    strcpy(m_aliens[2], m_aliens[1]);
+    strcpy(m_aliens[1], m_aliens[0]);
+    
+    //mets la nouvelle ligne et la vérif. à 0 pour afficher nouveaux aliens
+    for(int j = 0 ; j < NB_COL ; j++)
+    {
+        posAlien[j] = 0;
+        m_aliens[0][j] = ' ';
+    }
+    
+    //ajoute des aliens sur la ligne/matrice jusqu'au nombre en cours selon le niveau
+    while(i < (NB_ALIENS + m_niveau))
+    {
+        verifPosition = rand() % 20;
+        if(posAlien[verifPosition] == 0)
+        {
+            monstre = rand()%3+1; //random pour le monstre à afficher
+            m_aliens[0][verifPosition] = monstre; //mets le monstre dans la matrice et sur le LCD
+            posAlien[verifPosition] = 1;
+            i++;
+        }
+    }    
+}
+ 
+/*
+ * @brief Affiche les 4 lignes de la matrice m_aliens[][] sur l'afficheur LCD.
+ * @param rien
+ * @return rien
+ *
+void afficheAliens()
+{
+    lcd_effaceAffichage(); //efface le tout avant d'afficher les nouvelles lignes
+    
+    for(int i = 0 ; i < 4 ; i++) //affiche les 4 lignes de la matrice aliens sur la LCD
+    {
+        lcd_gotoXY(1, i+1);
+        lcd_putMessage(m_aliens[i]);
+    }
+    
+}
+
+/*
+ * @brief Efface jeu et vide matrice des aliens pour une nouvelle partie.
+ * @param rien
+ * @return rien
+ *
+void videAliens()
+{
+    lcd_effaceAffichage();
+    //remets toute la matrice à ' ' (vide)
+    for(int i =0 ; i < NB_LIGNE ; i++)
+    {
+        for(int j = 0 ; j < NB_COL ; j++)
+        {        
+            m_aliens[i][j] = ' ';
+        }
+    }    
+    
+}
+ 
+/**
+ * @brief Si la manette est vers la droite ou la gauche, on déplace le curseur d'une position
+ * @param La position X sur la ligne (i.e. le pointeur de posX du main).
+ * @return rien
+ *
+void deplace(char* x)
+{
+    int tension; //pour enregistrer la valeur binaire lu
+    //pour enlever la dernière position du joueur
+    const char effaceJoueur[21] = {"                    "};
+    
+    tension = getAnalog(7); //capture la tension
+        
+    //regarde la tension du du joystick, si < ou > on posX ++ ou --
+    if(tension > 200)
+    {
+        *x = *x + 1;
+    }
+    else if(tension < 50)
+    {
+        *x = *x - 1;
+    }
+    
+    //pour qd dépasse les limites
+    if(*x == 21)
+        *x = 1;
+    if(*x == 0)
+        *x = 20;
+    
+    //efface dernière position et place nouvelle position du joueur
+    lcd_gotoXY(1, 4);
+    lcd_putMessage(effaceJoueur);
+    lcd_gotoXY(*x, 4);
+    lcd_ecritChar('A');
+}
+ 
+/*
+ * @brief S'il y a un alien en haut (ligne 0,1 ou 2 en position X), on le tue
+ * @param La position X sur la ligne. Le pointeur vers le nombre de points (le nombre d'aliens morts).
+ * @return rien
+ *
+void feu(char x, int* pts)
+{
+    for(int i = 2 ; i>= 0 ; i--) //part du bas vers la haut
+    {
+        if(m_aliens[i][x-1] != ' ') //vérifie s'il y a un alien devant
+        {
+            //incrémente les pts selon quel alien a été tué
+            if(m_aliens[i][x-1] == 1)
+            {
+                *pts = *pts + 1;
+            }
+            if(m_aliens[i][x-1] == 2)
+            {
+                *pts = *pts + 2;
+            }
+            if(m_aliens[i][x-1] == 3)
+            {
+                *pts = *pts + 3;
+            }
+            m_aliens[i][x-1] = ' '; //enlève l'alien de la matrice
+            lcd_gotoXY(x, i+1);
+            lcd_ecritChar(' '); //efface tout de suite l'alien du LCD
+            
+            break;
+        }
+    }    
+}
+ 
+/*
+ * @brief Lorsqu'on arrive ici, le temps d'affichage d'un écran est écoulé.
+ *        Donc, s'il y a au moins 1 aliens sur la ligne 3, on a perdu
+ * @param rien
+ * @return vrai si on a perdu, faux sinon
+ *
+bool perdu(void)
+{
+    //tableau vide pour savoir si le joueur a tué tous les aliens
+    const char safe[21] = {"                    "};
+    
+    //compare la ligne d'alien à la ligne safe pour savoir si perdu
+    if(strcmp(safe, m_aliens[3]) == 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }    
+}
+ 
+ 
+/*
+ * @brief Affiche le nombre de points obtenus pendant 3 secondes.
+ * @param int pts. Les points accumulés
+ * @return rien
+ *
+void affichePerdu(int pts)
+{
+    const char gameOver[] = "LOL you lost"; //pcq juste dire perdu c'est pas assez ^^    
+    char ptsChar[3];
+    //Crée une string en incluant le score final pour le lcd_putMessage
+    sprintf(ptsChar, "Score = %3d", pts);
+    
+    //affiche le message (pas gentil) de game over et pointage final
+    lcd_effaceAffichage();
+    lcd_gotoXY(4, 1);
+    lcd_putMessage(gameOver);
+    lcd_gotoXY(4, 3);
+    lcd_putMessage(ptsChar);
+    __delay_ms(2000);
+    lcd_effaceAffichage();
+    
+    //si plus de 10 pts, prochaine partie monte le niveau de difficulté
+    //et ajoute un alien
+    if(pts > 10)
+    {
+        m_niveau++;
+        if(m_niveau> (20-NB_ALIENS) ) //pour avoir max 20 aliens en jeu
+        {
+            m_niveau = (20-NB_ALIENS);
+        }
+    }    
 }
  
 /*
@@ -521,7 +610,7 @@ void initialisation(void)
  * la variable m_tempsDAfficher
  * @param Aucun
  * @return Aucun
- */
+ *
 void interrupt high_isr(void)
 {
     if (INTCONbits.TMR0IF) // timer 0
@@ -531,4 +620,4 @@ void interrupt high_isr(void)
         TMR0 = DELAI_TMR0;  //recharge pour la prochaine interruption
         m_tempsDAfficher = true; //Indique au main que le temps est écoulé
     }
-}
+} */
