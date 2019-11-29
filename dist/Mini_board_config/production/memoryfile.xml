@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/Mini_board_config/production\Lab_5_AA_SpaceInvaders.X.production.hex">
+    <memory name="program">
+      <units>bytes</units>
+      <length>32768</length>
+      <used>4936</used>
+      <free>27832</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>1536</length>
+      <used>256</used>
+      <free>1280</free>
+    </memory>
+  </executable>
+</project>
