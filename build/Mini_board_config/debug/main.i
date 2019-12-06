@@ -4947,26 +4947,24 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 40 "main.c"
+# 48 "main.c"
 void initialisation(void);
 char getAnalog(char canal);
 void lcd_init(void);
 void init_serie(void);
 void lcd_curseurHome(void);
 void lcd_effaceAffichage(void);
+void lcd_montreCurseur(void);
 void lcd_putMessage(const unsigned char *chaine);
 void lcd_gotoXY(unsigned char x, unsigned char y);
 void lcd_ecritChar(unsigned char car);
-int stricmp(const char *string1, const char *string2);
-
-bool perdu(void);
-void affichePerdu(int pts);
 char *strcpy(char *dest, const char *src);
 bool testEtat(void);
 
 void initTabVue(void);
 void rempliMines(int nb);
 void metToucheCombien(void);
+void afficheTabMines(void);
 void afficheTabVue(void);
 char calculToucheCombien(int ligne, int colonne);
 void deplace(char* x, char* y);
@@ -4985,76 +4983,108 @@ void main(void)
 {
 
 const char afficheNom[] = "Lab6 Alexandre Alain";
-int posX = 1;
-int posY = 1;
+int posX = 10;
+int posY = 3;
 bool etatInitSW = 0;
 bool etatAfterSW = 0;
-int nbMines = 10;
+int nbMines = 5;
 
 
 initialisation();
 lcd_init();
-init_serie();
-
-lcd_gotoXY(1, 1);
-lcd_putMessage(afficheNom);
-
-
 
 etatInitSW = testEtat();
 etatAfterSW = etatInitSW;
 
+lcd_gotoXY(1, 1);
+lcd_putMessage(afficheNom);
+
+_delay((unsigned long)((2000)*(1000000/4000.0)));
+
+lcd_effaceAffichage();
+
 initTabVue();
 rempliMines(nbMines);
 metToucheCombien();
-
-lcd_effaceAffichage();
-lcd_gotoXY(1, 1);
-lcd_putMessage(m_tabMines[0]);
-lcd_gotoXY(1, 2);
-lcd_putMessage(m_tabMines[1]);
-lcd_gotoXY(1, 3);
-lcd_putMessage(m_tabMines[2]);
-lcd_gotoXY(1, 4);
-lcd_putMessage(m_tabMines[3]);
-
 afficheTabVue();
 
 while(1)
 {
 
-
+deplace(&posX, &posY);
 
 etatInitSW = testEtat();
 
 if( (etatInitSW != etatAfterSW) && (etatAfterSW == 0) )
 {
 
+if( (demine(posX, posY) == 0) || ( gagne(&nbMines) == 1) )
+{
+lcd_cacheCurseur();
+afficheTabMines();
+_delay((unsigned long)((500)*(1000000/4000.0)));
+
+while(testEtat() != 1)
+{
+_delay((unsigned long)((100)*(1000000/4000.0)));
+}
+
+lcd_montreCurseur();
+initTabVue();
+rempliMines(nbMines);
+metToucheCombien();
+}
+
+afficheTabVue();
 }
 
 etatAfterSW = etatInitSW;
 
+if (PORTBbits.RB0 == 0)
+{
+if(m_tabVue[posY-1][posX-1] == 1)
+{
+m_tabVue[posY-1][posX-1] = 3;
+}
+else if(m_tabVue[posY-1][posX-1] == 3)
+{
+m_tabVue[posY-1][posX-1] = 1;
+}
+
+afficheTabVue();
+
+while (PORTBbits.RB0 == 0);
+
+}
 
 _delay((unsigned long)((100)*(1000000/4000.0)));
 
 }
 }
 
-# 137
+# 167
+void afficheTabMines(void)
+{
+lcd_effaceAffichage();
+for(int k = 0 ; k < 4 ; k++)
+{
+lcd_gotoXY(1, (k+1) );
+lcd_putMessage(m_tabMines[k]);
+}
+}
+
+# 182
 void afficheTabVue(void)
 {
 lcd_effaceAffichage();
-lcd_gotoXY(1, 1);
-lcd_putMessage(m_tabVue[0]);
-lcd_gotoXY(1, 2);
-lcd_putMessage(m_tabVue[1]);
-lcd_gotoXY(1, 3);
-lcd_putMessage(m_tabVue[2]);
-lcd_gotoXY(1, 4);
-lcd_putMessage(m_tabVue[3]);
+for(int k = 0 ; k < 4 ; k++)
+{
+lcd_gotoXY(1, (k+1) );
+lcd_putMessage(m_tabVue[k]);
+}
 }
 
-# 157
+# 199
 void initTabVue(void)
 {
 for(int i = 0 ; i < 4 ; i++)
@@ -5066,7 +5096,7 @@ m_tabVue[i][k] = 1;
 }
 }
 
-# 175
+# 217
 void rempliMines(int nb)
 {
 bool tabSafe[4][20];
@@ -5091,14 +5121,14 @@ do
 testX = rand()%20;
 testY = rand()%4;
 }
-while(m_tabMines[testY][testX] == 2);
+while(tabSafe[testY][testX] == 1);
 
 tabSafe[testY][testX] = 1;
 m_tabMines[testY][testX] = 2;
 }
 }
 
-# 215
+# 257
 void metToucheCombien(void)
 {
 char chiffre = 0;
@@ -5119,14 +5149,14 @@ m_tabMines[m][j] = 48 + chiffre;
 }
 }
 
-# 240
+# 282
 char calculToucheCombien(int ligne, int colonne)
 {
-char nombre = 0;
+unsigned char nombre = 0;
 signed char minLigne = -1;
-char maxLigne = 2;
+signed char maxLigne = 2;
 signed char minCol = -1;
-char maxCol = 2;
+signed char maxCol = 2;
 
 if(ligne == 0)
 minLigne++;
@@ -5152,31 +5182,122 @@ nombre++;
 return nombre;
 }
 
-# 278
+# 320
 void deplace(char* x, char* y)
 {
 
+int tensionX;
+int tensionY;
+
+tensionX = getAnalog(7);
+tensionY = getAnalog(6);
+
+
+if(tensionX > 200)
+{
+*x = *x + 1;
+}
+else if(tensionX < 50)
+{
+*x = *x - 1;
 }
 
-# 291
+
+if(*x == 21)
+*x = 1;
+if(*x == 0)
+*x = 20;
+
+
+if(tensionY > 200)
+{
+*y = *y - 1;
+}
+else if(tensionY < 50)
+{
+*y = *y + 1;
+}
+
+
+if(*y == 5)
+*y = 1;
+if(*y == 0)
+*y = 4;
+
+lcd_gotoXY(*x, *y);
+}
+
+# 372
 bool demine(char x, char y)
 {
-int nbMines = 10;
+
+if(m_tabMines[y-1][x-1] == 2)
+return 0;
+
+m_tabVue[y-1][x-1] = m_tabMines[y-1][x-1];
+
+if(m_tabMines[y-1][x-1] == ' ')
+{
+enleveTuilesAutour(x, y);
 }
 
-# 302
+return 1;
+}
+
+# 394
 void enleveTuilesAutour(char x, char y)
 {
 
+signed char minY = -1;
+signed char maxY = 2;
+signed char minX = -1;
+signed char maxX = 2;
+
+if(y == 1)
+minY++;
+if(y == 4)
+maxY--;
+if(x == 1)
+minX++;
+if(x == 20)
+maxX--;
+
+for(signed char j = minX ; j < maxX ; j++)
+{
+for(signed char m = minY; m < maxY ; m++)
+{
+if( m_tabMines[y+m-1][x+j-1] != 2)
+{
+m_tabVue[y+m-1][x+j-1] = m_tabMines[y+m-1][x+j-1];
+}
+}
+}
 }
 
-# 314
+# 430
 bool gagne(int* pMines)
 {
+int nbCache = 0;
 
+for(int i = 0 ; i < 4 ; i++)
+{
+for(int k =0 ; k < 20 ; k++)
+{
+if(m_tabVue[i][k] == 1)
+nbCache++;
+}
 }
 
-# 324
+if(nbCache == *pMines)
+{
+(*pMines)++;
+return 1;
+}
+else
+return 0;
+}
+
+# 457
 bool testEtat(void)
 {
 if(PORTBbits.RB1 == 0)
@@ -5189,7 +5310,7 @@ return 0;
 }
 }
 
-# 341
+# 474
 char getAnalog(char canal)
 {
 ADCON0bits.CHS = canal;
@@ -5199,7 +5320,7 @@ while (ADCON0bits.GO_DONE == 1);
 return ADRESH;
 }
 
-# 355
+# 488
 void initialisation(void)
 {
 TRISD = 0;
@@ -5225,17 +5346,5 @@ ADCON2bits.ADFM = 0;
 ADCON2bits.ACQT = 0;
 ADCON2bits.ADCS = 0;
 
-
-
-T0CONbits.TMR0ON = 1;
-T0CONbits.T08BIT = 0;
-T0CONbits.T0CS = 0;
-T0CONbits.PSA = 0;
-T0CONbits.T0PS = 0b010;
-
-INTCONbits.TMR0IE = 1;
-INTCONbits.TMR0IF = 0;
-INTCONbits.PEIE = 1;
-INTCONbits.GIE = 1;
+# 526
 }
-

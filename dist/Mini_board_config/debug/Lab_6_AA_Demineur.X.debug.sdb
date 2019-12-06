@@ -59,31 +59,45 @@
 [v _lcd_ecritChar lcd_ecritChar `A(v  1 e 1 0 ]
 "387
 [v _lcd_putMessage lcd_putMessage `A(v  1 e 1 0 ]
+"401
+[v _lcd_cacheCurseur lcd_cacheCurseur `A(v  1 e 1 0 ]
+"412
+[v _lcd_montreCurseur lcd_montreCurseur `A(v  1 e 1 0 ]
 "417
 [v _lcd_initCGRam lcd_initCGRam `A(v  1 s 1 lcd_initCGRam ]
 "431
 [v _lcd_strobeEnableBit lcd_strobeEnableBit `A(v  1 s 1 lcd_strobeEnableBit ]
-"73 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
+"79 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
 [v _main main `A(v  1 e 1 0 ]
-"137
+"167
+[v _afficheTabMines afficheTabMines `A(v  1 e 1 0 ]
+"182
 [v _afficheTabVue afficheTabVue `A(v  1 e 1 0 ]
-"157
+"199
 [v _initTabVue initTabVue `A(v  1 e 1 0 ]
-"175
+"217
 [v _rempliMines rempliMines `A(v  1 e 1 0 ]
-"215
+"257
 [v _metToucheCombien metToucheCombien `A(v  1 e 1 0 ]
-"240
+"282
 [v _calculToucheCombien calculToucheCombien `A(uc  1 e 1 0 ]
-"324
+"320
+[v _deplace deplace `A(v  1 e 1 0 ]
+"372
+[v _demine demine `A(uc  1 e 1 0 ]
+"394
+[v _enleveTuilesAutour enleveTuilesAutour `A(v  1 e 1 0 ]
+"430
+[v _gagne gagne `A(uc  1 e 1 0 ]
+"457
 [v _testEtat testEtat `A(uc  1 e 1 0 ]
-"355
+"474
+[v _getAnalog getAnalog `A(uc  1 e 1 0 ]
+"488
 [v _initialisation initialisation `A(v  1 e 1 0 ]
-"29 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\serie.c
-[v _init_serie init_serie `A(v  1 e 1 0 ]
 "446 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k20.h
 [v _ANSEL ANSEL `VEuc  1 e 1 @3966 ]
-[s S306 . 1 `uc 1 ANS0 1 0 :1:0 
+[s S342 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
@@ -93,11 +107,11 @@
 `uc 1 ANS7 1 0 :1:7 
 ]
 "463
-[u S315 . 1 `S306 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES315  1 e 1 @3966 ]
+[u S351 . 1 `S342 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES351  1 e 1 @3966 ]
 "508
 [v _ANSELH ANSELH `VEuc  1 e 1 @3967 ]
-[s S558 . 1 `uc 1 RA0 1 0 :1:0 
+[s S511 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -107,50 +121,50 @@
 `uc 1 RA7 1 0 :1:7 
 ]
 "618
-[s S567 . 1 `uc 1 AN0 1 0 :1:0 
+[s S520 . 1 `uc 1 AN0 1 0 :1:0 
 `uc 1 AN1 1 0 :1:1 
 `uc 1 AN2 1 0 :1:2 
 `uc 1 AN3 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 AN4 1 0 :1:5 
 ]
-[s S574 . 1 `uc 1 C12IN0M 1 0 :1:0 
+[s S527 . 1 `uc 1 C12IN0M 1 0 :1:0 
 `uc 1 C12IN1M 1 0 :1:1 
 `uc 1 C2INP 1 0 :1:2 
 `uc 1 C1INP 1 0 :1:3 
 `uc 1 C1OUT 1 0 :1:4 
 `uc 1 C2OUT 1 0 :1:5 
 ]
-[s S581 . 1 `uc 1 C12IN0N 1 0 :1:0 
+[s S534 . 1 `uc 1 C12IN0N 1 0 :1:0 
 `uc 1 C12IN1N 1 0 :1:1 
 `uc 1 VREFM 1 0 :1:2 
 `uc 1 VREFP 1 0 :1:3 
 `uc 1 T0CKI 1 0 :1:4 
 `uc 1 SS 1 0 :1:5 
 ]
-[s S588 . 1 `uc 1 . 1 0 :5:0 
+[s S541 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_SS 1 0 :1:5 
 ]
-[s S591 . 1 `uc 1 . 1 0 :2:0 
+[s S544 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 VREFN 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nSS 1 0 :1:5 
 ]
-[s S596 . 1 `uc 1 . 1 0 :2:0 
+[s S549 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 CVREF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 LVDIN 1 0 :1:5 
 ]
-[s S601 . 1 `uc 1 . 1 0 :5:0 
+[s S554 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 HLVDIN 1 0 :1:5 
 ]
-[s S604 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S557 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 `uc 1 . 1 0 :6:1 
 `uc 1 RJPU 1 0 :1:7 
 ]
-[u S608 . 1 `S558 1 . 1 0 `S567 1 . 1 0 `S574 1 . 1 0 `S581 1 . 1 0 `S588 1 . 1 0 `S591 1 . 1 0 `S596 1 . 1 0 `S601 1 . 1 0 `S604 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES608  1 e 1 @3968 ]
-[s S88 . 1 `uc 1 RB0 1 0 :1:0 
+[u S561 . 1 `S511 1 . 1 0 `S520 1 . 1 0 `S527 1 . 1 0 `S534 1 . 1 0 `S541 1 . 1 0 `S544 1 . 1 0 `S549 1 . 1 0 `S554 1 . 1 0 `S557 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES561  1 e 1 @3968 ]
+[s S103 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -160,7 +174,7 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "841
-[s S97 . 1 `uc 1 INT0 1 0 :1:0 
+[s S112 . 1 `uc 1 INT0 1 0 :1:0 
 `uc 1 INT1 1 0 :1:1 
 `uc 1 INT2 1 0 :1:2 
 `uc 1 CCP2 1 0 :1:3 
@@ -169,7 +183,7 @@
 `uc 1 KBI2 1 0 :1:6 
 `uc 1 KBI3 1 0 :1:7 
 ]
-[s S106 . 1 `uc 1 AN12 1 0 :1:0 
+[s S121 . 1 `uc 1 AN12 1 0 :1:0 
 `uc 1 AN10 1 0 :1:1 
 `uc 1 AN8 1 0 :1:2 
 `uc 1 AN9 1 0 :1:3 
@@ -178,28 +192,28 @@
 `uc 1 PGC 1 0 :1:6 
 `uc 1 PGD 1 0 :1:7 
 ]
-[s S115 . 1 `uc 1 FLT0 1 0 :1:0 
+[s S130 . 1 `uc 1 FLT0 1 0 :1:0 
 `uc 1 C12IN3M 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 C12IN2M 1 0 :1:3 
 ]
-[s S120 . 1 `uc 1 . 1 0 :1:0 
+[s S135 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 C12IN3N 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 C12IN2N 1 0 :1:3 
 ]
-[s S125 . 1 `uc 1 . 1 0 :3:0 
+[s S140 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
-[u S128 . 1 `S88 1 . 1 0 `S97 1 . 1 0 `S106 1 . 1 0 `S115 1 . 1 0 `S120 1 . 1 0 `S125 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES128  1 e 1 @3969 ]
+[u S143 . 1 `S103 1 . 1 0 `S112 1 . 1 0 `S121 1 . 1 0 `S130 1 . 1 0 `S135 1 . 1 0 `S140 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES143  1 e 1 @3969 ]
 "1184
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
 "2032
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
 "2254
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
-[s S754 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S707 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -209,7 +223,7 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "2508
-[s S763 . 1 `uc 1 RC0 1 0 :1:0 
+[s S716 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -218,11 +232,11 @@
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S772 . 1 `S754 1 . 1 0 `S763 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES772  1 e 1 @3988 ]
+[u S725 . 1 `S707 1 . 1 0 `S716 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES725  1 e 1 @3988 ]
 "2698
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
-[s S890 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S843 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -232,23 +246,23 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "3796
-[s S899 . 1 `uc 1 . 1 0 :3:0 
+[s S852 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADEN 1 0 :1:3 
 ]
-[s S902 . 1 `uc 1 . 1 0 :5:0 
+[s S855 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[s S905 . 1 `uc 1 . 1 0 :6:0 
+[s S858 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S908 . 1 `uc 1 . 1 0 :6:0 
+[s S861 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S911 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S864 . 1 `uc 1 RCD8 1 0 :1:0 
 ]
-[u S913 . 1 `S890 1 . 1 0 `S899 1 . 1 0 `S902 1 . 1 0 `S905 1 . 1 0 `S908 1 . 1 0 `S911 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES913  1 e 1 @4011 ]
-[s S838 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S866 . 1 `S843 1 . 1 0 `S852 1 . 1 0 `S855 1 . 1 0 `S858 1 . 1 0 `S861 1 . 1 0 `S864 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES866  1 e 1 @4011 ]
+[s S791 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -258,7 +272,7 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "4004
-[s S847 . 1 `uc 1 TX9D1 1 0 :1:0 
+[s S800 . 1 `uc 1 TX9D1 1 0 :1:0 
 `uc 1 TRMT1 1 0 :1:1 
 `uc 1 BRGH1 1 0 :1:2 
 `uc 1 SENDB1 1 0 :1:3 
@@ -267,13 +281,13 @@
 `uc 1 TX91 1 0 :1:6 
 `uc 1 CSRC1 1 0 :1:7 
 ]
-[s S856 . 1 `uc 1 . 1 0 :6:0 
+[s S809 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[s S859 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S812 . 1 `uc 1 TXD8 1 0 :1:0 
 ]
-[u S861 . 1 `S838 1 . 1 0 `S847 1 . 1 0 `S856 1 . 1 0 `S859 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES861  1 e 1 @4012 ]
+[u S814 . 1 `S791 1 . 1 0 `S800 1 . 1 0 `S809 1 . 1 0 `S812 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES814  1 e 1 @4012 ]
 "4221
 [v _TXREG TXREG `VEuc  1 e 1 @4013 ]
 "4233
@@ -282,7 +296,7 @@
 [v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
 "4257
 [v _SPBRGH SPBRGH `VEuc  1 e 1 @4016 ]
-[s S796 . 1 `uc 1 ABDEN 1 0 :1:0 
+[s S749 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -292,73 +306,73 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "4689
-[s S805 . 1 `uc 1 . 1 0 :4:0 
+[s S758 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 SCKP 1 0 :1:4 
 ]
-[s S808 . 1 `uc 1 . 1 0 :5:0 
+[s S761 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 RXCKP 1 0 :1:5 
 ]
-[s S811 . 1 `uc 1 . 1 0 :1:0 
+[s S764 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 W4E 1 0 :1:1 
 ]
-[u S814 . 1 `S796 1 . 1 0 `S805 1 . 1 0 `S808 1 . 1 0 `S811 1 . 1 0 ]
-[v _BAUDCONbits BAUDCONbits `VES814  1 e 1 @4024 ]
-[s S328 . 1 `uc 1 ADCS 1 0 :3:0 
+[u S767 . 1 `S749 1 . 1 0 `S758 1 . 1 0 `S761 1 . 1 0 `S764 1 . 1 0 ]
+[v _BAUDCONbits BAUDCONbits `VES767  1 e 1 @4024 ]
+[s S364 . 1 `uc 1 ADCS 1 0 :3:0 
 `uc 1 ACQT 1 0 :3:3 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "5074
-[s S333 . 1 `uc 1 ADCS0 1 0 :1:0 
+[s S369 . 1 `uc 1 ADCS0 1 0 :1:0 
 `uc 1 ADCS1 1 0 :1:1 
 `uc 1 ADCS2 1 0 :1:2 
 `uc 1 ACQT0 1 0 :1:3 
 `uc 1 ACQT1 1 0 :1:4 
 `uc 1 ACQT2 1 0 :1:5 
 ]
-[u S340 . 1 `S328 1 . 1 0 `S333 1 . 1 0 ]
-[v _ADCON2bits ADCON2bits `VES340  1 e 1 @4032 ]
+[u S376 . 1 `S364 1 . 1 0 `S369 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES376  1 e 1 @4032 ]
 "5124
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
-[s S176 . 1 `uc 1 . 1 0 :1:0 
+[s S212 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_NOT_DONE 1 0 :1:1 
 ]
 "5219
-[s S179 . 1 `uc 1 ADON 1 0 :1:0 
+[s S215 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 ]
-[s S183 . 1 `uc 1 . 1 0 :1:0 
+[s S219 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
 `uc 1 CHS2 1 0 :1:4 
 `uc 1 CHS3 1 0 :1:5 
 ]
-[s S190 . 1 `uc 1 . 1 0 :1:0 
+[s S226 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_DONE 1 0 :1:1 
 ]
-[s S193 . 1 `uc 1 . 1 0 :1:0 
+[s S229 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S196 . 1 `uc 1 . 1 0 :1:0 
+[s S232 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[s S199 . 1 `uc 1 . 1 0 :1:0 
+[s S235 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[s S202 . 1 `uc 1 . 1 0 :1:0 
+[s S238 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GODONE 1 0 :1:1 
 ]
-[u S205 . 1 `S176 1 . 1 0 `S179 1 . 1 0 `S183 1 . 1 0 `S190 1 . 1 0 `S193 1 . 1 0 `S196 1 . 1 0 `S199 1 . 1 0 `S202 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES205  1 e 1 @4034 ]
+[u S241 . 1 `S212 1 . 1 0 `S215 1 . 1 0 `S219 1 . 1 0 `S226 1 . 1 0 `S229 1 . 1 0 `S232 1 . 1 0 `S235 1 . 1 0 `S238 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES241  1 e 1 @4034 ]
 "5308
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
-[s S250 . 1 `uc 1 . 1 0 :2:0 
+[s S286 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T1SYNC 1 0 :1:2 
 ]
 "5907
-[s S253 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S289 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 TMR1CS 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 T1OSCEN 1 0 :1:3 
@@ -366,112 +380,73 @@
 `uc 1 T1RUN 1 0 :1:6 
 `uc 1 RD16 1 0 :1:7 
 ]
-[s S261 . 1 `uc 1 . 1 0 :2:0 
+[s S297 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T1SYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T1CKPS0 1 0 :1:4 
 `uc 1 T1CKPS1 1 0 :1:5 
 ]
-[s S267 . 1 `uc 1 . 1 0 :3:0 
+[s S303 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 SOSCEN 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 T1RD16 1 0 :1:7 
 ]
-[u S272 . 1 `S250 1 . 1 0 `S253 1 . 1 0 `S261 1 . 1 0 `S267 1 . 1 0 ]
-[v _T1CONbits T1CONbits `VES272  1 e 1 @4045 ]
+[u S308 . 1 `S286 1 . 1 0 `S289 1 . 1 0 `S297 1 . 1 0 `S303 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES308  1 e 1 @4045 ]
 "5977
 [v _TMR1 TMR1 `VEus  1 e 2 @4046 ]
-[s S356 . 1 `uc 1 T0PS 1 0 :3:0 
-`uc 1 PSA 1 0 :1:3 
-`uc 1 T0SE 1 0 :1:4 
-`uc 1 T0CS 1 0 :1:5 
-`uc 1 T08BIT 1 0 :1:6 
-`uc 1 TMR0ON 1 0 :1:7 
-]
-"6526
-[s S363 . 1 `uc 1 T0PS0 1 0 :1:0 
-`uc 1 T0PS1 1 0 :1:1 
-`uc 1 T0PS2 1 0 :1:2 
-]
-[u S367 . 1 `S356 1 . 1 0 `S363 1 . 1 0 ]
-[v _T0CONbits T0CONbits `VES367  1 e 1 @4053 ]
-[s S382 . 1 `uc 1 RBIF 1 0 :1:0 
-`uc 1 INT0IF 1 0 :1:1 
-`uc 1 TMR0IF 1 0 :1:2 
-`uc 1 RBIE 1 0 :1:3 
-`uc 1 INT0IE 1 0 :1:4 
-`uc 1 TMR0IE 1 0 :1:5 
-`uc 1 PEIE_GIEL 1 0 :1:6 
-`uc 1 GIE_GIEH 1 0 :1:7 
-]
-"7049
-[s S391 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 INT0F 1 0 :1:1 
-`uc 1 T0IF 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 INT0E 1 0 :1:4 
-`uc 1 T0IE 1 0 :1:5 
-`uc 1 PEIE 1 0 :1:6 
-`uc 1 GIE 1 0 :1:7 
-]
-[s S400 . 1 `uc 1 . 1 0 :6:0 
-`uc 1 GIEL 1 0 :1:6 
-`uc 1 GIEH 1 0 :1:7 
-]
-[u S404 . 1 `S382 1 . 1 0 `S391 1 . 1 0 `S400 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES404  1 e 1 @4082 ]
 "8630
 [v _RCIF RCIF `VEb  1 e 0 @31989 ]
 "3 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\rand.c
 [v _randx randx `l  1 s 4 randx ]
 "66 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\Lcd4Lignes.c
 [v _matCGRAM matCGRAM `A[8][8]uc  1 e 64 0 ]
-"69 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
+"75 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
 [v _m_tabMines m_tabMines `A[4][21]uc  1 e 84 0 ]
-"70
+"76
 [v _m_tabVue m_tabVue `A[4][21]uc  1 e 84 0 ]
-"73
+"79
 [v _main main `A(v  1 e 1 0 ]
 {
-"76
-[v main@afficheNom afficheNom `C[21]uc  1 a 21 114 ]
-"81
-[v main@nbMines nbMines `i  1 a 2 139 ]
-"78
-[v main@posY posY `i  1 a 2 137 ]
-"77
-[v main@posX posX `i  1 a 2 135 ]
-"79
+"82
+[v main@afficheNom afficheNom `C[21]uc  1 a 21 118 ]
+"84
+[v main@posY posY `i  1 a 2 145 ]
+"83
+[v main@posX posX `i  1 a 2 143 ]
+"87
+[v main@nbMines nbMines `i  1 a 2 140 ]
+"85
 [v main@etatInitSW etatInitSW `uc  1 a 1 142 ]
+"86
+[v main@etatAfterSW etatAfterSW `uc  1 a 1 139 ]
 "80
-[v main@etatAfterSW etatAfterSW `uc  1 a 1 141 ]
-"74
-[v main@F2873 F2873 `C[21]uc  1 s 21 F2873 ]
-"130
+[v main@F2870 F2870 `C[21]uc  1 s 21 F2870 ]
+"160
 } 0
-"324
+"457
 [v _testEtat testEtat `A(uc  1 e 1 0 ]
 {
-"334
+"467
 } 0
-"175
+"217
 [v _rempliMines rempliMines `A(v  1 e 1 0 ]
 {
-"184
+"226
 [v rempliMines@m m `i  1 a 2 111 ]
-"192
+"234
 [v rempliMines@i i `i  1 a 2 105 ]
-"182
+"224
 [v rempliMines@j j `i  1 a 2 109 ]
-"177
+"219
 [v rempliMines@tabSafe tabSafe `[4][20]uc  1 a 80 25 ]
-"179
+"221
 [v rempliMines@testY testY `uc  1 a 1 108 ]
-"178
+"220
 [v rempliMines@testX testX `uc  1 a 1 107 ]
-"175
+"217
 [v rempliMines@nb nb `i  1 p 2 20 ]
-"204
+"246
 } 0
 "12 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\rand.c
 [v _rand rand `(i  1 e 2 0 ]
@@ -499,40 +474,45 @@
 [v ___awmod@divisor divisor `i  1 p 2 16 ]
 "34
 } 0
-"215 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
+"257 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
 [v _metToucheCombien metToucheCombien `A(v  1 e 1 0 ]
 {
-"221
+"263
 [v metToucheCombien@m m `i  1 a 2 28 ]
-"219
+"261
 [v metToucheCombien@j j `i  1 a 2 26 ]
-"217
+"259
 [v metToucheCombien@chiffre chiffre `uc  1 a 1 25 ]
-"233
+"275
 } 0
-"240
+"282
 [v _calculToucheCombien calculToucheCombien `A(uc  1 e 1 0 ]
 {
-"260
+"302
 [v calculToucheCombien@m m `c  1 a 1 21 ]
-"258
+"300
 [v calculToucheCombien@j j `c  1 a 1 20 ]
-"246
-[v calculToucheCombien@maxCol maxCol `uc  1 a 1 19 ]
-"245
+"288
+[v calculToucheCombien@maxCol maxCol `c  1 a 1 19 ]
+"287
 [v calculToucheCombien@minCol minCol `c  1 a 1 18 ]
-"244
-[v calculToucheCombien@maxLigne maxLigne `uc  1 a 1 17 ]
-"243
+"286
+[v calculToucheCombien@maxLigne maxLigne `c  1 a 1 17 ]
+"285
 [v calculToucheCombien@minLigne minLigne `c  1 a 1 16 ]
-"242
+"284
 [v calculToucheCombien@nombre nombre `uc  1 a 1 15 ]
-"240
+"282
 [v calculToucheCombien@ligne ligne `i  1 p 2 6 ]
 [v calculToucheCombien@colonne colonne `i  1 p 2 8 ]
-"270
+"312
 } 0
-"258 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\Lcd4Lignes.c
+"412 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\Lcd4Lignes.c
+[v _lcd_montreCurseur lcd_montreCurseur `A(v  1 e 1 0 ]
+{
+"415
+} 0
+"258
 [v _lcd_init lcd_init `A(v  1 e 1 0 ]
 {
 "268
@@ -555,10 +535,15 @@
 {
 "291
 } 0
-"355 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
+"401
+[v _lcd_cacheCurseur lcd_cacheCurseur `A(v  1 e 1 0 ]
+{
+"404
+} 0
+"488 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
 [v _initialisation initialisation `A(v  1 e 1 0 ]
 {
-"392
+"526
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\rand.c
 [v _srand srand `(v  1 e 1 0 ]
@@ -566,42 +551,103 @@
 [v srand@x x `ui  1 p 2 0 ]
 "9
 } 0
-"29 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\serie.c
-[v _init_serie init_serie `A(v  1 e 1 0 ]
-{
-"48
-} 0
-"157 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
+"199 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
 [v _initTabVue initTabVue `A(v  1 e 1 0 ]
 {
-"161
+"203
 [v initTabVue@k k `i  1 a 2 10 ]
-"159
+"201
 [v initTabVue@i i `i  1 a 2 8 ]
-"166
+"208
 } 0
-"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
+"430
+[v _gagne gagne `A(uc  1 e 1 0 ]
 {
-"17
-[v ___wmul@product product `ui  1 a 2 4 ]
-"15
-[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
-"53
+"436
+[v gagne@k k `i  1 a 2 15 ]
+"434
+[v gagne@i i `i  1 a 2 13 ]
+"432
+[v gagne@nbCache nbCache `i  1 a 2 11 ]
+"430
+[v gagne@pMines pMines `*.39i  1 p 2 6 ]
+"450
 } 0
-"137 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\main.c
+"320
+[v _deplace deplace `A(v  1 e 1 0 ]
+{
+"324
+[v deplace@tensionY tensionY `i  1 a 2 12 ]
+"323
+[v deplace@tensionX tensionX `i  1 a 2 10 ]
+"320
+[v deplace@x x `*.39uc  1 p 2 5 ]
+[v deplace@y y `*.39uc  1 p 2 7 ]
+"362
+} 0
+"474
+[v _getAnalog getAnalog `A(uc  1 e 1 0 ]
+{
+[v getAnalog@canal canal `uc  1 a 1 wreg ]
+[v getAnalog@canal canal `uc  1 a 1 wreg ]
+"476
+[v getAnalog@canal canal `uc  1 a 1 1 ]
+"481
+} 0
+"372
+[v _demine demine `A(uc  1 e 1 0 ]
+{
+[v demine@x x `uc  1 a 1 wreg ]
+[v demine@x x `uc  1 a 1 wreg ]
+[v demine@y y `uc  1 p 1 26 ]
+"375
+[v demine@x x `uc  1 a 1 35 ]
+"386
+} 0
+"394
+[v _enleveTuilesAutour enleveTuilesAutour `A(v  1 e 1 0 ]
+{
+[v enleveTuilesAutour@x x `uc  1 a 1 wreg ]
+"413
+[v enleveTuilesAutour@m m `c  1 a 1 24 ]
+"411
+[v enleveTuilesAutour@j j `c  1 a 1 23 ]
+"400
+[v enleveTuilesAutour@maxX maxX `c  1 a 1 22 ]
+"399
+[v enleveTuilesAutour@minX minX `c  1 a 1 21 ]
+"398
+[v enleveTuilesAutour@maxY maxY `c  1 a 1 20 ]
+"397
+[v enleveTuilesAutour@minY minY `c  1 a 1 19 ]
+"394
+[v enleveTuilesAutour@x x `uc  1 a 1 wreg ]
+[v enleveTuilesAutour@y y `uc  1 p 1 6 ]
+"397
+[v enleveTuilesAutour@x x `uc  1 a 1 25 ]
+"421
+} 0
+"182
 [v _afficheTabVue afficheTabVue `A(v  1 e 1 0 ]
 {
-"148
+"185
+[v afficheTabVue@k k `i  1 a 2 9 ]
+"190
+} 0
+"167
+[v _afficheTabMines afficheTabMines `A(v  1 e 1 0 ]
+{
+"170
+[v afficheTabMines@k k `i  1 a 2 9 ]
+"175
 } 0
 "387 C:\Users\Alain pin pin\Desktop\Git Gud\Lab_6_AA_Demineur.X\Lcd4Lignes.c
 [v _lcd_putMessage lcd_putMessage `A(v  1 e 1 0 ]
 {
 "389
-[v lcd_putMessage@j j `uc  1 a 1 7 ]
+[v lcd_putMessage@j j `uc  1 a 1 8 ]
 "387
-[v lcd_putMessage@chaine chaine `*.39Cuc  1 p 2 5 ]
+[v lcd_putMessage@chaine chaine `*.39Cuc  1 p 2 6 ]
 "393
 } 0
 "359
@@ -673,4 +719,14 @@
 [v _lcd_lireDonnees lcd_lireDonnees `A(uc  1 s 1 lcd_lireDonnees ]
 {
 "98
+} 0
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
 } 0
